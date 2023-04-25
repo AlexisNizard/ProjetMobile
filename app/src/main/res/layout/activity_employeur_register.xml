@@ -1,6 +1,598 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FDFAFF"
+    tools:context=".view.activity.MainActivity">
 
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="28dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.92" />
+
+
+            <ImageView
+                android:id="@+id/banner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_dashboard14"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo"
+                app:layout_constraintBottom_toBottomOf="@id/banner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/banner" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/logo"
+                android:text="@string/creer_compte_employe"
+                android:textAlignment="center"
+                android:textColor="#064DD8"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_marginTop="28dp"
+                android:fontFamily="sans-serif-medium"/>
+
+            <TextView
+                android:id="@+id/textViewNomEntreprise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nom_entreprise"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                android:layout_marginTop="24dp"
+                android:textColor="#0757F6"/>
+
+            <EditText
+                android:id="@+id/editTextNomEntreprise"
+                android:layout_width="0dp"
+                android:layout_height="52sp"
+                android:background="@drawable/background_edt"
+                android:hint="@string/et_nomEntreprise"
+                android:padding="14sp"
+                android:singleLine="true"
+                android:textColorHint="#636363"
+                app:layout_constraintTop_toBottomOf="@+id/textViewNomEntreprise"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/textViewNomService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_nomService"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/editTextNomEntreprise"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                android:layout_marginTop="24dp"
+                android:textColor="#0757F6"/>
+
+            <EditText
+                android:id="@+id/editTextNomService"
+                android:layout_width="0dp"
+                android:layout_height="52sp"
+                android:background="@drawable/background_edt"
+                android:hint="@string/et_nomService"
+                android:padding="14sp"
+                android:singleLine="true"
+                android:textColorHint="#636363"
+                app:layout_constraintTop_toBottomOf="@+id/textViewNomService"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/textViewNomSousService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_nomSousService"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/editTextNomService"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                android:layout_marginTop="24dp"
+                android:textColor="#0757F6"/>
+
+            <EditText
+                android:id="@+id/editTextNomSousService"
+                android:layout_width="0dp"
+                android:layout_height="52sp"
+                android:background="@drawable/background_edt"
+                android:hint="@string/et_nomSousService"
+                android:padding="14sp"
+                android:singleLine="true"
+                android:textColorHint="#636363"
+                app:layout_constraintTop_toBottomOf="@+id/textViewNomSousService"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/textViewNumNational"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_numSiret"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/editTextNomSousService"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                android:layout_marginTop="24dp"
+                android:textColor="#0757F6"/>
+
+            <EditText
+                android:id="@+id/editTextNumNational"
+                android:layout_width="0dp"
+                android:layout_height="52sp"
+                android:background="@drawable/background_edt"
+                android:hint="@string/et_numSiret"
+                android:padding="14sp"
+                android:singleLine="true"
+                android:textColorHint="#636363"
+                android:inputType="number"
+                app:layout_constraintTop_toBottomOf="@+id/textViewNumNational"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/textViewContact1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_contact1"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/editTextNumNational"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                android:layout_marginTop="24dp"
+                android:textColor="#0757F6"/>
+
+            <EditText
+                android:id="@+id/editTextContact1"
+                android:layout_width="0dp"
+                android:layout_height="52sp"
+                android:background="@drawable/background_edt"
+                android:hint="et_contact"
+                android:padding="14sp"
+                android:singleLine="true"
+                android:textColorHint="#636363"
+                app:layout_constraintTop_toBottomOf="@+id/textViewContact1"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/textViewContact2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_contact2"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/editTextContact1"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                android:layout_marginTop="24dp"
+                android:textColor="#0757F6"/>
+
+            <EditText
+                android:id="@+id/editTextContact2"
+                android:layout_width="0dp"
+                android:layout_height="52sp"
+                android:background="@drawable/background_edt"
+                android:hint="@string/et_contact"
+                android:padding="14sp"
+                android:singleLine="true"
+                android:textColorHint="#636363"
+                app:layout_constraintTop_toBottomOf="@+id/textViewContact2"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                android:textColor="#000000"/>
+
+
+            <TextView
+                android:id="@+id/textViewMail1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_Mail"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/editTextContact2"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                android:layout_marginTop="24dp"
+                android:textColor="#0757F6" />
+
+            <EditText
+                android:id="@+id/editTextMail1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_edt"
+                android:hint="@string/champEmail"
+                android:padding="14sp"
+                android:textColorHint="#636363"
+                app:layout_constraintTop_toBottomOf="@+id/textViewMail1"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/textViewMail2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_mail2"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/editTextMail1"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                android:layout_marginTop="24dp"
+                android:textColor="#0757F6" />
+
+            <EditText
+                android:id="@+id/editTextMail2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_edt"
+                android:hint="@string/champEmail"
+                android:padding="14sp"
+                android:textColorHint="#636363"
+                app:layout_constraintTop_toBottomOf="@+id/textViewMail2"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/textViewNumTel1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_tel1"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/editTextMail2"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                android:layout_marginTop="24dp"
+                android:textColor="#0757F6"/>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phone_input_layout1"
+                android:layout_width="0dp"
+                android:layout_height="60sp"
+                android:background="@drawable/background_edt"
+                app:layout_constraintTop_toBottomOf="@+id/textViewNumTel1"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextPhoneNumber1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/et_tel1"
+                    android:inputType="phone"
+                    android:maxLength="14"
+                    android:padding="14sp"
+                    android:textColorHint="#636363"
+                    android:textColor="#000000"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/countryCodePicker1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/phone_input_layout1"
+                app:layout_constraintStart_toStartOf="@+id/phone_input_layout1"
+                app:layout_constraintTop_toTopOf="@+id/phone_input_layout1"
+                app:ccp_defaultNameCode="FR"
+                app:ccp_showFlag="true"
+                app:ccp_showNameCode="false"
+                app:ccpDialog_background="@color/ccp_background"
+                app:ccp_defaultLanguage="FRENCH"
+                app:ccpDialog_textColor="#000000"
+                />
+
+            <TextView
+                android:id="@+id/textViewNumTel2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_tel2"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/countryCodePicker1"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                android:layout_marginTop="24dp"
+                android:textColor="#0757F6"/>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phone_input_layout2"
+                android:layout_width="0dp"
+                android:layout_height="60sp"
+                android:background="@drawable/background_edt"
+                app:layout_constraintTop_toBottomOf="@+id/textViewNumTel2"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextPhoneNumber2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/et_tel2"
+                    android:inputType="phone"
+                    android:maxLength="14"
+                    android:padding="14sp"
+                    android:textColorHint="#636363"
+                    android:textColor="#000000"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/countryCodePicker2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/phone_input_layout2"
+                app:layout_constraintStart_toStartOf="@+id/phone_input_layout2"
+                app:layout_constraintTop_toTopOf="@+id/phone_input_layout2"
+                app:ccp_defaultNameCode="FR"
+                app:ccp_showFlag="true"
+                app:ccp_showNameCode="false"
+                app:ccpDialog_background="@color/ccp_background"
+                app:ccp_defaultLanguage="FRENCH"
+                app:ccpDialog_textColor="#000000"
+                />
+
+            <TextView
+                android:id="@+id/textViewAdresse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_Adresse"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/countryCodePicker2"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                android:layout_marginTop="24dp"
+                android:textColor="#0757F6"/>
+
+            <EditText
+                android:id="@+id/editTextAdresse"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_edt"
+                android:hint="@string/et_Adresse"
+                android:padding="14sp"
+                android:textColorHint="#636363"
+                app:layout_constraintTop_toBottomOf="@+id/textViewAdresse"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/textViewCodePostal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_codePostal"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/editTextAdresse"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                android:layout_marginTop="24dp"
+                android:textColor="#0757F6"/>
+
+            <TextView
+                android:id="@+id/textViewVille"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_Ville"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/editTextAdresse"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                android:layout_marginTop="24dp"
+                android:textColor="#0757F6"/>
+
+            <EditText
+                android:id="@+id/editTextCodePostal"
+                android:layout_width="0dp"
+                android:layout_height="52sp"
+                android:background="@drawable/background_edt"
+                android:hint="@string/et_codePostal"
+                android:padding="14sp"
+                android:singleLine="true"
+                android:maxLength="5"
+                android:digits="0123456789"
+                android:inputType="number"
+                android:textColorHint="#636363"
+                app:layout_constraintTop_toBottomOf="@+id/textViewCodePostal"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintWidth_percent="0.38"
+                android:textColor="#000000"/>
+
+            <EditText
+                android:id="@+id/editTextVille"
+                android:layout_width="0dp"
+                android:layout_height="52sp"
+                android:background="@drawable/background_edt"
+                android:hint="@string/et_Ville"
+                android:padding="14sp"
+                android:textColorHint="#636363"
+                android:maxLines="1"
+                android:singleLine="true"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintTop_toBottomOf="@+id/textViewVille"
+                app:layout_constraintWidth_percent="0.45"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/textViewSite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_SiteWeb"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/editTextCodePostal"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                android:layout_marginTop="24dp"
+                android:textColor="#0757F6"/>
+
+            <EditText
+                android:id="@+id/editTextSiteWeb"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_edt"
+                android:hint="@string/et_SiteWeb"
+                android:padding="14sp"
+                android:textColorHint="#636363"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSite"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/textViewLinkedin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_linkedin"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/editTextSiteWeb"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                android:layout_marginTop="24dp"
+                android:textColor="#0757F6"/>
+
+            <EditText
+                android:id="@+id/editTextLinkedin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_edt"
+                android:hint="@string/et_linkedin"
+                android:padding="14sp"
+                android:textColorHint="#636363"
+                app:layout_constraintTop_toBottomOf="@+id/textViewLinkedin"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/textViewFacebook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_Facebook"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/editTextLinkedin"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                android:layout_marginTop="24dp"
+                android:textColor="#0757F6"/>
+
+            <EditText
+                android:id="@+id/editTextFacebook"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_edt"
+                android:hint="@string/et_Facebook"
+                android:padding="14sp"
+                android:textColorHint="#636363"
+                app:layout_constraintTop_toBottomOf="@+id/textViewFacebook"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/textViewMdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_Mdp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/editTextFacebook"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                android:layout_marginTop="24dp"
+                android:textColor="#0757F6"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/textViewMdp"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="#636363"
+                app:endIconMode="password_toggle"
+                app:endIconTint="#636363"
+                android:background="@drawable/background_edt"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/champMotdePasse"
+                    android:inputType="textPassword"
+                    android:textColor="#000000"
+                    android:textColorHint="#636363" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/login_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue_btn_background"
+                android:text="@string/register_button"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/passwordInputLayout"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="5dp"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
+

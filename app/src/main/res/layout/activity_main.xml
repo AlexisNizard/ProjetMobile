@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
-        android:src="@drawable/top_background"
+        android:src="@drawable/bg_dashboard14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -103,7 +103,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logo"
-        android:textColor="#0757F6"
+        android:textColor="#0A3A9A"
         app:layout_constraintTop_toTopOf="@id/guideline1"
         app:layout_constraintBottom_toTopOf="@id/guideline2"
         android:textStyle="bold"
@@ -120,7 +120,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title"
-        android:textColor="#0757F6"
+        android:textColor="#0A3A9A"
         app:layout_constraintTop_toTopOf="@id/guideline2"
         app:layout_constraintBottom_toTopOf="@id/guideline3"/>
 

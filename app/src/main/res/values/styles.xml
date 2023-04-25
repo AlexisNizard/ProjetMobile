@@ -10,4 +10,5 @@
         <item name="android:headerBackground">@color/colorPrimary</item>
         <item name="android:datePickerMode">calendar</item>
     </style>
+
 </resources>

@@ -90,7 +90,7 @@
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
-        android:src="@drawable/top_background"
+        android:src="@drawable/bg_dashboard14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -119,7 +119,7 @@
         app:layout_constraintBottom_toTopOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="@id/guideline_vertical_start_titre"
         app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_titre"
-        android:textColor="#0757F6"
+        android:textColor="#0A3A9A"
         android:textStyle="bold"
  />
 
