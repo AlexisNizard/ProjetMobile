@@ -1,4 +1,8 @@
 package com.example.interimexpress.view.fragment
 
-class BanniereFragment {
+import androidx.fragment.app.Fragment
+
+class BanniereFragment : Fragment() {
+
+
 }

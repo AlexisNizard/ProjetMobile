@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.interimexpress.R
 
 class RechercheOffresActivity : AppCompatActivity() {
@@ -16,6 +17,13 @@ class RechercheOffresActivity : AppCompatActivity() {
 
         imgProfil.setOnClickListener {
             val intent = Intent(this, CandidatDashboardActivity::class.java)
+            startActivity(intent)
+        }
+
+        val offreLayout = findViewById<ConstraintLayout>(R.id.offre)
+
+        offreLayout.setOnClickListener {
+            val intent = Intent(this, DetailsOffreActivity::class.java)
             startActivity(intent)
         }
     }
