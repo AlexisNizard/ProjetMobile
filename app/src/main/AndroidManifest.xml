@@ -33,6 +33,9 @@
         <activity
             android:name=".view.activity.PostulerOffreActivity" />
         <activity
+            android:name=".view.activity.ConfirmationInscriptionActivity" />
+        <!--android:name=".view.activity.ConfirmationInscriptionActivity"-->
+        <activity
           android:name=".view.activity.MainActivity"
           android:exported="true">
         <intent-filter>
@@ -43,22 +46,13 @@
         </activity>
 
         <!--<activity
-            android:name=".view.activity.CandidatDashboardActivity"
+            android:name=".view.activity.ConfirmationInscriptionActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> -->
-
-        <!--<activity
-            android:name=".view.activity.RechercheOffresActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity> -->
+        </activity>-->
 
 
     </application>

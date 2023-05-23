@@ -6,7 +6,7 @@ import java.util.*
 
 object InitialData {
 
-    const val VERSION = 5
+    const val VERSION = 6
 
     private val sdf = SimpleDateFormat("dd/MM/yyyy")
     private val date = sdf.parse("01/02/2022")
@@ -106,11 +106,15 @@ object InitialData {
 
     val utilisateurs = listOf(
         Utilisateur(
-            "1",
-            "John",
-            "Doe",
-            "john.doe@example.com",
-            "password123"
+            id = "1",
+            nom = "John",
+            prenom = "Doe",
+            adresseMail = "john.doe@example.com",
+            motDePasse = "password123",
+            role = "Candidat",
+            nationalite = "Américain",
+            numTelephone = "+1234567890",
+            dateNaissance = "01-01-1990"
         )
     )
 }
