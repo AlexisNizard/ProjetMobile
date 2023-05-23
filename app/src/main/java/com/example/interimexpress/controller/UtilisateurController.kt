@@ -1,42 +1,41 @@
 package com.example.interimexpress.controller
 
-import com.example.interimexpress.model.DatabaseHelper
+import android.util.Log
+import com.example.interimexpress.model.InitialData
 import com.example.interimexpress.model.Utilisateur
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
 
-class UtilisateurController(private val dbHelper: DatabaseHelper) {
+class UtilisateurController {
 
-    fun insertUtilisateur(nom: String, prenom: String, adresseMail: String, motDePasse: String): Boolean {
-        return dbHelper.insertUtilisateur(nom, prenom, adresseMail, motDePasse)
+    private val db = FirebaseFirestore.getInstance()
+    private val utilisateursCollection = db.collection("utilisateurs")
+    private val versionDocument = db.collection("system").document("utilisateurVersion")
+
+    fun getUtilisateur(id: String): Task<DocumentSnapshot> {
+        return utilisateursCollection.document(id).get()
     }
 
-    fun getUtilisateurById(id: Int): Utilisateur? {
-        val cursor = dbHelper.readableDatabase.rawQuery("SELECT * FROM ${DatabaseHelper.TABLE_NAME_UTILISATEUR} WHERE ${DatabaseHelper.COLUMN_ID_UTILISATEUR} = $id", null)
-        var utilisateur: Utilisateur? = null
-        if (cursor.moveToFirst()) {
-            val nom = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_NOM))
-            val prenom = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_PRENOM))
-            val adresseMail = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_ADRESSE_MAIL))
-            val motDePasse = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_MOT_DE_PASSE))
-            utilisateur = Utilisateur(id, nom, prenom, adresseMail, motDePasse)
+    fun insertUtilisateur(utilisateur: Utilisateur) {
+        utilisateur.id?.let {
+            utilisateursCollection.document(it.toString()).set(utilisateur).addOnFailureListener { exception ->
+                Log.e("UtilisateurController", "Erreur lors de l'insertion d'un utilisateur", exception)
+            }
         }
-        cursor.close()
-        return utilisateur
     }
 
-    fun getUtilisateurByEmail(adresseMail: String): Utilisateur? {
-        val cursor = dbHelper.readableDatabase.rawQuery("SELECT * FROM ${DatabaseHelper.TABLE_NAME_UTILISATEUR} WHERE ${DatabaseHelper.COLUMN_ADRESSE_MAIL} = ?", arrayOf(adresseMail))
-        var utilisateur: Utilisateur? = null
-        if (cursor.moveToFirst()) {
-            val id = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_ID_UTILISATEUR))
-            val nom = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_NOM))
-            val prenom = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_PRENOM))
-            val motDePasse = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_MOT_DE_PASSE))
-            utilisateur = Utilisateur(id, nom, prenom, adresseMail, motDePasse)
+    fun checkAndUpdateData() {
+        versionDocument.get().addOnSuccessListener { document ->
+            val currentVersion = document.getLong("version")?.toInt() ?: 0
+            if (currentVersion < InitialData.VERSION) {
+                for (utilisateur in InitialData.utilisateurs) {
+                    insertUtilisateur(utilisateur)
+                }
+                versionDocument.set(mapOf("version" to InitialData.VERSION))
+            }
+        }.addOnFailureListener { exception ->
+            Log.e("UtilisateurController", "Erreur lors de la récupération de la version", exception)
         }
-        cursor.close()
-        return utilisateur
     }
-
-
-
 }

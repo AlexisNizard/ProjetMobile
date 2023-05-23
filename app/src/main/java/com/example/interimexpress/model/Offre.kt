@@ -1,9 +1,13 @@
 package com.example.interimexpress.model
+import com.google.firebase.Timestamp
 
 data class Offre(
-    val id: Int,
-    val titre: String,
-    val entreprise: String,
-    val adresse: String,
-    val description: String
+    var id: String? = null,
+    var titre: String? = null,
+    var entreprise: String? = null,
+    var adresse: String? = null,
+    var description: String? = null,
+    var dateCreation: Timestamp? = null
 )
+
+

@@ -1,9 +1,9 @@
 package com.example.interimexpress.model
 
 data class Utilisateur(
-    val id: Int,
-    val nom: String,
-    val prenom: String,
-    val adresseMail: String,
-    val motDePasse: String
+    var id: String? = null,
+    var nom: String? = null,
+    var prenom: String? = null,
+    var adresseMail: String? = null,
+    var motDePasse: String? = null
 )

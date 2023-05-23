@@ -1,9 +1,20 @@
 package com.example.interimexpress.model
 
+import com.google.firebase.Timestamp
+import java.text.SimpleDateFormat
+import java.util.*
+
 object InitialData {
+
+    const val VERSION = 5
+
+    private val sdf = SimpleDateFormat("dd/MM/yyyy")
+    private val date = sdf.parse("01/02/2022")
+    private val timestamp = Timestamp(date)
+
     val offres = listOf(
         Offre(
-            1,
+            "1",
             "Alternance Développeur web - Montpellier (F/H)",
             "Capgemini",
             "34000 Montpellier",
@@ -48,13 +59,54 @@ object InitialData {
                     "\n" +
                     "Alors convaincu ?\n" +
                     "\n" +
-                    "Postule vite et rejoins-nous !"
+                    "Postule vite et rejoins-nous !",
+            timestamp
+        ),
+        Offre(
+            "2",
+            "Sapien eu ligula laoreet, vel molestie dolor egestas (F/H)",
+            "Euismod porttitor",
+            "34000 Montpellier",
+            "Aliquam scelerisque interdum ante interdum consectetur. Curabitur nec ante sed massa luctus consectetur sit amet scelerisque magna. Curabitur porta tempor massa, id gravida odio viverra non. Pellentesque convallis sollicitudin neque, eget iaculis erat. Aenean eleifend ante non nisi dictum vulputate. Nam mauris ante, faucibus at massa tincidunt, fermentum imperdiet risus. Integer laoreet nunc ut luctus condimentum. Integer lobortis felis vitae egestas dapibus",
+            timestamp
+        ),
+        Offre(
+            "3",
+            "Etiam non lobortis massa. Ut ac euismod lectus (F/H)",
+            "Euismod porttitor",
+            "34000 Montpellier",
+            "Aliquam scelerisque interdum ante interdum consectetur. Curabitur nec ante sed massa luctus consectetur sit amet scelerisque magna. Curabitur porta tempor massa, id gravida odio viverra non. Pellentesque convallis sollicitudin neque, eget iaculis erat. Aenean eleifend ante non nisi dictum vulputate. Nam mauris ante, faucibus at massa tincidunt, fermentum imperdiet risus. Integer laoreet nunc ut luctus condimentum. Integer lobortis felis vitae egestas dapibus",
+            timestamp
+        ),
+        Offre(
+            "4",
+            "Fermentum. Mauris sed lectus at purus pulvinar accumsan (F/H)",
+            "Euismod porttitor",
+            "34000 Montpellier",
+            "Aliquam scelerisque interdum ante interdum consectetur. Curabitur nec ante sed massa luctus consectetur sit amet scelerisque magna. Curabitur porta tempor massa, id gravida odio viverra non. Pellentesque convallis sollicitudin neque, eget iaculis erat. Aenean eleifend ante non nisi dictum vulputate. Nam mauris ante, faucibus at massa tincidunt, fermentum imperdiet risus. Integer laoreet nunc ut luctus condimentum. Integer lobortis felis vitae egestas dapibus",
+            timestamp
+        ),
+        Offre(
+            "5",
+            "Elementum placerat. Interdum et malesuada fames ac (F/H)",
+            "Euismod porttitor",
+            "34000 Montpellier",
+            "Aliquam scelerisque interdum ante interdum consectetur. Curabitur nec ante sed massa luctus consectetur sit amet scelerisque magna. Curabitur porta tempor massa, id gravida odio viverra non. Pellentesque convallis sollicitudin neque, eget iaculis erat. Aenean eleifend ante non nisi dictum vulputate. Nam mauris ante, faucibus at massa tincidunt, fermentum imperdiet risus. Integer laoreet nunc ut luctus condimentum. Integer lobortis felis vitae egestas dapibus",
+            timestamp
+        ),
+        Offre(
+            "6",
+            " Phasellus ultrices tellus non tellus sollicitudin, (F/H)",
+            "Faucibus orci",
+            "34000 Montpellier",
+            "Fusce eget feugiat felis. Aliquam vitae faucibus dolor, nec iaculis felis. Vivamus ex felis, dignissim eget magna et, sollicitudin blandit tellus. Nunc nisl lectus, placerat vel ullamcorper nec, laoreet vel metus. Morbi sed nibh eros. Vivamus nec orci et turpis ornare hendrerit vel nec odio. Sed nisl risus, gravida nec magna vitae, rutrum dictum risus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus",
+            timestamp
         )
     )
 
     val utilisateurs = listOf(
         Utilisateur(
-            1,
+            "1",
             "John",
             "Doe",
             "john.doe@example.com",

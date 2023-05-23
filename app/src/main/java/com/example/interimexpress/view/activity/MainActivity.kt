@@ -1,44 +1,42 @@
 package com.example.interimexpress.view.activity
 
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 
 import com.example.interimexpress.R
-import com.example.interimexpress.model.DatabaseManager
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import com.example.interimexpress.controller.OffreController
+import com.example.interimexpress.controller.UtilisateurController
 
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var databaseManager: DatabaseManager
 
     /*private val LOCATION_PERMISSION_REQUEST_CODE = 1
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var lastLocation: Location? = null*/
 
+
+    private lateinit var offreController : OffreController
+    private lateinit var utilisateurController : UtilisateurController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        offreController = OffreController()
+        utilisateurController = UtilisateurController()
+
+        offreController.checkAndUpdateData()
+        utilisateurController.checkAndUpdateData()
+
+
+
         /*checkLocationPermission()
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)*/
 
-
-        databaseManager = DatabaseManager.getInstance(this)
-
-        // Insertion les données initiales dans la base de données
-        databaseManager.insertInitialData()
 
         val btnConnecter = findViewById<Button>(R.id.login_button)
         val btnRegister = findViewById<Button>(R.id.register_button)

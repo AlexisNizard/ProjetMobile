@@ -339,14 +339,16 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/blue_btn_background"
-                android:text="@string/se_connecter"
+                android:text="@string/register_button"
                 android:textColor="#ffffff"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/datePickerLayout"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
-                android:layout_marginTop="24dp"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"/>
 
 
 

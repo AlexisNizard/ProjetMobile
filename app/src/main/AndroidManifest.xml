@@ -31,6 +31,8 @@
         <activity
             android:name=".view.activity.DetailsOffreActivity" />
         <activity
+            android:name=".view.activity.PostulerOffreActivity" />
+        <activity
           android:name=".view.activity.MainActivity"
           android:exported="true">
         <intent-filter>
