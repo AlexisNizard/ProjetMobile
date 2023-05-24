@@ -6,7 +6,7 @@ import java.util.*
 
 object InitialData {
 
-    const val VERSION = 6
+    const val VERSION = 14
 
     private val sdf = SimpleDateFormat("dd/MM/yyyy")
     private val date = sdf.parse("01/02/2022")
@@ -104,12 +104,11 @@ object InitialData {
         )
     )
 
-    val utilisateurs = listOf(
-        Utilisateur(
-            id = "1",
+    val candidats = listOf(
+        Candidat(
+            adresseMail = "john.doe@example.com",
             nom = "John",
             prenom = "Doe",
-            adresseMail = "john.doe@example.com",
             motDePasse = "password123",
             role = "Candidat",
             nationalite = "Américain",
@@ -117,4 +116,30 @@ object InitialData {
             dateNaissance = "01-01-1990"
         )
     )
+
+    val employeurs = listOf(
+        Employeur(
+            adresseMail = "contact1@entrepriseA.com",
+            nomEntreprise = "Entreprise A",
+            nomService = "Service A1",
+            nomSousService = "Sous-Service A1.1",
+            numeroSiret = "12345678901234",
+            nomContact1 = "Smith",
+            prenomContact1 = "John",
+            nomContact2 = "Doe",
+            prenomContact2 = "Jane",
+            adresseMail2 = "contact2@entrepriseA.com",
+            motDePasse = "password123",
+            role = "Employeur",
+            numTelephone1 = "+1234567890",
+            numTelephone2 = "+0987654321",
+            adresse = "123 Rue de l'Exemple",
+            codePostal = "75000",
+            ville = "Paris",
+            lienSiteWeb = "www.entrepriseA.com",
+            lienLinkedin = "www.linkedin.com/in/entrepriseA",
+            lienFacebook = "www.facebook.com/entrepriseA"
+        )
+    )
+
 }

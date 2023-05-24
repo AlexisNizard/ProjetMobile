@@ -10,18 +10,18 @@ import androidx.core.content.ContextCompat
 import com.example.interimexpress.R
 import kotlin.math.roundToInt
 
-class OtpEditText @JvmOverloads constructor(
+open class OtpEditText @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = android.R.attr.editTextStyle
 ) : AppCompatEditText(context, attrs, defStyleAttr) {
 
-    private var space = 24 //24 dp by default, space between the lines
-    private var numChars = 5
-    private var lineSpacing = 8 //8dp by default, height of the text from our lines
-    private var maxLength = 5
-    private var lineStroke = 2f
-    private val linesPaint: Paint
+    open var space = 24 //24 dp by default, space between the lines
+    open var numChars = 5
+    open var lineSpacing = 8 //8dp by default, height of the text from our lines
+    open var maxLength = 5
+    open var lineStroke = 2f
+    open val linesPaint: Paint
     private var clickListener: OnClickListener? = null
 
     init {
@@ -29,7 +29,7 @@ class OtpEditText @JvmOverloads constructor(
         lineStroke *= multi
         linesPaint = Paint(paint)
         linesPaint.strokeWidth = lineStroke
-        linesPaint.color = ContextCompat.getColor(context, R.color.colorPrimary) //replace with your color
+        linesPaint.color = ContextCompat.getColor(context, R.color.colorPrimary2) //replace with your color
         setBackgroundResource(0)
         space = (multi * space).roundToInt()
         lineSpacing = (multi * lineSpacing).roundToInt()

@@ -117,7 +117,7 @@
         app:layout_constraintTop_toBottomOf="@id/logoCandidat"
         app:layout_constraintStart_toStartOf="@id/guideline_vertical_start_titre"
         app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_titre"
-        android:textColor="#0757F6"
+        android:textColor="#0D3C9A"
         android:textStyle="bold"
         />
 
@@ -136,7 +136,7 @@
         android:layout_marginStart="21dp"
         android:text="@string/employeur"
         android:textAlignment="center"
-        android:textColor="#0757F6"
+        android:textColor="#0D3C9A"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
@@ -157,7 +157,7 @@
         android:layout_marginEnd="31dp"
         android:text="@string/agence"
         android:textAlignment="center"
-        android:textColor="#0757F6"
+        android:textColor="#0D3C9A"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"

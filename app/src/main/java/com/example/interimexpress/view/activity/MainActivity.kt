@@ -8,8 +8,9 @@ import android.widget.Button
 import android.widget.TextView
 
 import com.example.interimexpress.R
+import com.example.interimexpress.controller.CandidatController
+import com.example.interimexpress.controller.EmployeurController
 import com.example.interimexpress.controller.OffreController
-import com.example.interimexpress.controller.UtilisateurController
 
 
 class MainActivity : AppCompatActivity() {
@@ -20,17 +21,20 @@ class MainActivity : AppCompatActivity() {
 
 
     private lateinit var offreController : OffreController
-    private lateinit var utilisateurController : UtilisateurController
+    private lateinit var candidatController: CandidatController
+    private lateinit var employeurController: EmployeurController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         offreController = OffreController()
-        utilisateurController = UtilisateurController()
+        candidatController = CandidatController()
+        employeurController = EmployeurController()
 
         offreController.checkAndUpdateData()
-        utilisateurController.checkAndUpdateData()
+        candidatController.checkAndUpdateData()
+        employeurController.checkAndUpdateData()
 
 
 

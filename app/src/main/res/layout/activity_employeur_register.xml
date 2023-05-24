@@ -17,7 +17,21 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/parent_layout">
+
+            <!--DEBUGGING a supprimé fin du projet-->
+
+            <Button
+                android:id="@+id/AUTOREMPLISSAGE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TESTING"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--FIN DEBUGGING a supprimé fin du projet-->
+
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_vertical_start"
@@ -62,9 +76,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/logo"
-                android:text="@string/creer_compte_employe"
+                android:text="@string/creer_compte"
                 android:textAlignment="center"
-                android:textColor="#064DD8"
+                android:textColor="#0D3C9A"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:layout_marginTop="28dp"
@@ -80,7 +94,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/title"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 android:layout_marginTop="24dp"
-                android:textColor="#0757F6"/>
+                android:textColor="#0A3A9A"/>
 
             <EditText
                 android:id="@+id/editTextNomEntreprise"
@@ -100,20 +114,20 @@
                 android:id="@+id/textViewNomService"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tv_nomService"
+                android:text="Nom service/département *"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/editTextNomEntreprise"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 android:layout_marginTop="24dp"
-                android:textColor="#0757F6"/>
+                android:textColor="#0A3A9A"/>
 
             <EditText
                 android:id="@+id/editTextNomService"
                 android:layout_width="0dp"
                 android:layout_height="52sp"
                 android:background="@drawable/background_edt"
-                android:hint="@string/et_nomService"
+                android:hint="Votre nom de service/département"
                 android:padding="14sp"
                 android:singleLine="true"
                 android:textColorHint="#636363"
@@ -126,13 +140,13 @@
                 android:id="@+id/textViewNomSousService"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tv_nomSousService"
+                android:text="Nom sous-service/sous-département *"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/editTextNomService"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 android:layout_marginTop="24dp"
-                android:textColor="#0757F6"/>
+                android:textColor="#0A3A9A"/>
 
             <EditText
                 android:id="@+id/editTextNomSousService"
@@ -158,75 +172,187 @@
                 app:layout_constraintTop_toBottomOf="@+id/editTextNomSousService"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 android:layout_marginTop="24dp"
-                android:textColor="#0757F6"/>
+                android:textColor="#0A3A9A"/>
 
-            <EditText
+            <com.example.interimexpress.adapter.SiretEditText
                 android:id="@+id/editTextNumNational"
                 android:layout_width="0dp"
-                android:layout_height="52sp"
-                android:background="@drawable/background_edt"
-                android:hint="@string/et_numSiret"
-                android:padding="14sp"
-                android:singleLine="true"
-                android:textColorHint="#636363"
+                android:layout_height="wrap_content"
+                android:cursorVisible="false"
+                android:digits="1234567890"
                 android:inputType="number"
+                android:maxLength="17"
+                android:textIsSelectable="false"
+                android:textSize="20dp"
                 app:layout_constraintTop_toBottomOf="@+id/textViewNumNational"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
-                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
-                android:textColor="#000000"/>
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"/>
 
             <TextView
-                android:id="@+id/textViewContact1"
+                android:id="@+id/textViewNomTitre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tv_contact1"
+                android:text="Contact *"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/editTextNumNational"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 android:layout_marginTop="24dp"
-                android:textColor="#0757F6"/>
+                android:layout_marginLeft="1sp"
+                android:textColor="#0A3A9A"/>
 
-            <EditText
-                android:id="@+id/editTextContact1"
-                android:layout_width="0dp"
-                android:layout_height="52sp"
-                android:background="@drawable/background_edt"
-                android:hint="et_contact"
-                android:padding="14sp"
-                android:singleLine="true"
-                android:textColorHint="#636363"
-                app:layout_constraintTop_toBottomOf="@+id/textViewContact1"
-                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
-                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
-                android:textColor="#000000"/>
 
             <TextView
-                android:id="@+id/textViewContact2"
+                android:id="@+id/textViewNom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tv_contact2"
-                android:textSize="16sp"
+                android:text="Nom *"
+                android:textSize="14dp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/editTextContact1"
+                app:layout_constraintTop_toBottomOf="@+id/textViewNomTitre"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
-                android:layout_marginTop="24dp"
-                android:textColor="#0757F6"/>
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="1sp"
+                android:textColor="#184FBC"/>
+
+            <TextView
+                android:id="@+id/textViewPrenom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prénom *"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/textViewNomTitre"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="5sp"
+                android:textColor="#184FBC"/>
 
             <EditText
-                android:id="@+id/editTextContact2"
+                android:id="@+id/editTextNom"
                 android:layout_width="0dp"
                 android:layout_height="52sp"
                 android:background="@drawable/background_edt"
-                android:hint="@string/et_contact"
+                android:hint="Son nom"
+                android:textSize="15dp"
                 android:padding="14sp"
                 android:singleLine="true"
                 android:textColorHint="#636363"
-                app:layout_constraintTop_toBottomOf="@+id/textViewContact2"
+                app:layout_constraintTop_toBottomOf="@+id/textViewNom"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
-                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintWidth_percent="0.38"
                 android:textColor="#000000"/>
 
+
+
+            <EditText
+                android:id="@+id/editTextPrenom"
+                android:layout_width="0dp"
+                android:layout_height="52sp"
+                android:background="@drawable/background_edt"
+                android:hint="Son prénom"
+                android:textSize="15dp"
+                android:padding="14sp"
+                android:textColorHint="#636363"
+                android:maxLines="1"
+                android:singleLine="true"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintTop_toBottomOf="@+id/textViewPrenom"
+                app:layout_constraintWidth_percent="0.38"
+                android:textColor="#000000"/>
+
+            <Button
+                android:id="@+id/addContactButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:textStyle="bold"
+                android:padding="10dp"
+                android:textSize="12dp"
+                android:background="@drawable/blue_btn_background_2"
+                android:text="Ajouter un autre contact"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/editTextPrenom" />
+
+
+
+            <TextView
+                android:id="@+id/textViewNomTitre2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contact numéro 2 *"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/editTextNom"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="1sp"
+                android:textColor="#0A3A9A"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/textViewNom2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nom *"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/textViewNomTitre2"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="1sp"
+                android:textColor="#184FBC"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/textViewPrenom2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prénom *"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/textViewNomTitre2"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="5sp"
+                android:textColor="#184FBC"
+                android:visibility="gone"/>
+
+            <EditText
+                android:id="@+id/editTextNom2"
+                android:layout_width="0dp"
+                android:layout_height="52sp"
+                android:background="@drawable/background_edt"
+                android:hint="Son nom"
+                android:textSize="15dp"
+                android:padding="14dp"
+                android:singleLine="true"
+                android:textColorHint="#636363"
+                app:layout_constraintTop_toBottomOf="@+id/textViewNom2"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintWidth_percent="0.38"
+                android:textColor="#000000"
+                android:visibility="gone"/>
+
+
+
+            <EditText
+                android:id="@+id/editTextPrenom2"
+                android:layout_width="0dp"
+                android:layout_height="52sp"
+                android:background="@drawable/background_edt"
+                android:hint="Son prénom"
+                android:textSize="15dp"
+                android:padding="14dp"
+                android:textColorHint="#636363"
+                android:maxLines="1"
+                android:singleLine="true"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintTop_toBottomOf="@+id/textViewPrenom2"
+                app:layout_constraintWidth_percent="0.38"
+                android:textColor="#000000"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/textViewMail1"
@@ -235,48 +361,169 @@
                 android:text="@string/tv_Mail"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/editTextContact2"
+                app:layout_constraintTop_toBottomOf="@+id/addContactButton"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 android:layout_marginTop="24dp"
-                android:textColor="#0757F6" />
+                android:textColor="#0A3A9A" />
 
-            <EditText
-                android:id="@+id/editTextMail1"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editTextMail1_layout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/background_edt"
-                android:hint="@string/champEmail"
-                android:padding="14sp"
+                android:layout_marginTop="-11dp"
                 android:textColorHint="#636363"
                 app:layout_constraintTop_toBottomOf="@+id/textViewMail1"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
-                android:textColor="#000000"/>
+                app:boxStrokeColor="#636363"
+                app:startIconDrawable="@drawable/baseline_email_24"
+                app:startIconTint="#636363">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextMail1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Votre adresse mail principale"
+                    android:background="@drawable/background_edt"
+                    android:textColor="#000000"
+                    android:padding="14dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/addMailButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:textStyle="bold"
+                android:padding="10dp"
+                android:textSize="12dp"
+                android:background="@drawable/blue_btn_background_2"
+                android:text="Ajouter une adresse mail secondaire"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/editTextMail1_layout" />
+
 
             <TextView
                 android:id="@+id/textViewMail2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tv_mail2"
+                android:text="Adresse mail secondaire *"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/editTextMail1"
+                app:layout_constraintTop_toBottomOf="@+id/editTextMail1_layout"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 android:layout_marginTop="24dp"
-                android:textColor="#0757F6" />
+                android:textColor="#0A3A9A"
+                android:visibility="gone"/>
 
-            <EditText
-                android:id="@+id/editTextMail2"
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editTextMail2_layout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/background_edt"
-                android:hint="@string/champEmail"
-                android:padding="14sp"
+                android:layout_marginTop="-11dp"
                 android:textColorHint="#636363"
                 app:layout_constraintTop_toBottomOf="@+id/textViewMail2"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
-                android:textColor="#000000"/>
+                app:boxStrokeColor="#636363"
+                app:startIconDrawable="@drawable/baseline_email_24"
+                app:startIconTint="#636363"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextMail2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Votre adresse mail secondaire"
+                    android:background="@drawable/background_edt"
+                    android:textColor="#000000"
+                    android:padding="14dp"
+                    android:visibility="gone"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textViewMdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_Mdp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/addMailButton"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                android:layout_marginTop="24dp"
+                android:textColor="#0A3A9A"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password_input_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColorHint="#636363"
+                android:layout_marginTop="-11dp"
+                app:endIconMode="password_toggle"
+                app:endIconTint="#636363"
+                app:layout_constraintTop_toBottomOf="@+id/textViewMdp"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+
+                app:boxStrokeColor="#636363"
+                app:startIconDrawable="@drawable/baseline_lock_24"
+                app:startIconTint="#636363">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/champMotdePasse"
+                    android:background="@drawable/background_edt"
+                    android:inputType="textPassword"
+                    android:textColor="#000000"
+                    android:padding="14dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textConfimerViewMdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confirmation du mot de passe"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/password_input_layout"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                android:layout_marginTop="24dp"
+                android:textColor="#0A3A9A"/>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password_input_layout_confirmation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColorHint="#636363"
+                android:layout_marginTop="-11dp"
+                app:endIconMode="password_toggle"
+                app:endIconTint="#636363"
+                app:layout_constraintTop_toBottomOf="@+id/textConfimerViewMdp"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+
+                app:boxStrokeColor="#636363"
+                app:startIconDrawable="@drawable/confirm_password_icon"
+                app:startIconTint="#636363">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextPassword_confirmation"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Confirmer votre mot de passe"
+                    android:background="@drawable/background_edt"
+                    android:inputType="textPassword"
+                    android:textColor="#000000"
+                    android:padding="14dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
 
             <TextView
                 android:id="@+id/textViewNumTel1"
@@ -285,11 +532,10 @@
                 android:text="@string/tv_tel1"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/editTextMail2"
+                app:layout_constraintTop_toBottomOf="@+id/password_input_layout_confirmation"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 android:layout_marginTop="24dp"
-                android:textColor="#0757F6"/>
-
+                android:textColor="#0A3A9A"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/phone_input_layout1"
@@ -305,14 +551,17 @@
                     android:id="@+id/editTextPhoneNumber1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/et_tel1"
+                    android:hint="Numéro de téléphone"
                     android:inputType="phone"
                     android:maxLength="14"
-                    android:padding="14sp"
+                    android:paddingStart="110dp"
+                    android:paddingBottom="17dp"
+                    android:paddingEnd="14dp"
                     android:textColorHint="#636363"
                     android:textColor="#000000"/>
 
             </com.google.android.material.textfield.TextInputLayout>
+
 
             <com.hbb20.CountryCodePicker
                 android:id="@+id/countryCodePicker1"
@@ -330,18 +579,35 @@
                 app:ccpDialog_textColor="#000000"
                 />
 
+
+            <Button
+                android:id="@+id/addTelButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:textStyle="bold"
+                android:padding="10dp"
+                android:textSize="12dp"
+                android:background="@drawable/blue_btn_background_2"
+                android:text="Ajouter un numéro secondaire"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/countryCodePicker1" />
+
+
+
             <TextView
                 android:id="@+id/textViewNumTel2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tv_tel2"
+                android:text="Numéro de téléphone secondaire *"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/countryCodePicker1"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 android:layout_marginTop="24dp"
-                android:textColor="#0757F6"/>
-
+                android:textColor="#0A3A9A"
+                android:visibility="gone"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/phone_input_layout2"
@@ -351,20 +617,25 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewNumTel2"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                android:visibility="gone"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextPhoneNumber2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/et_tel2"
+                    android:hint="Numéro de téléphone"
                     android:inputType="phone"
                     android:maxLength="14"
-                    android:padding="14sp"
+                    android:paddingStart="110dp"
+                    android:paddingBottom="17dp"
+                    android:paddingEnd="14dp"
                     android:textColorHint="#636363"
-                    android:textColor="#000000"/>
+                    android:textColor="#000000"
+                    android:visibility="gone"/>
 
             </com.google.android.material.textfield.TextInputLayout>
+
 
             <com.hbb20.CountryCodePicker
                 android:id="@+id/countryCodePicker2"
@@ -380,26 +651,28 @@
                 app:ccpDialog_background="@color/ccp_background"
                 app:ccp_defaultLanguage="FRENCH"
                 app:ccpDialog_textColor="#000000"
+                android:visibility="gone"
                 />
+
 
             <TextView
                 android:id="@+id/textViewAdresse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tv_Adresse"
+                android:text="Adresse de l'entreprise"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/countryCodePicker2"
+                app:layout_constraintTop_toBottomOf="@+id/addTelButton"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 android:layout_marginTop="24dp"
-                android:textColor="#0757F6"/>
+                android:textColor="#0A3A9A"/>
 
             <EditText
                 android:id="@+id/editTextAdresse"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_edt"
-                android:hint="@string/et_Adresse"
+                android:hint="Votre adresse d'entreprise"
                 android:padding="14sp"
                 android:textColorHint="#636363"
                 app:layout_constraintTop_toBottomOf="@+id/textViewAdresse"
@@ -411,13 +684,13 @@
                 android:id="@+id/textViewCodePostal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tv_codePostal"
+                android:text="Code postal"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/editTextAdresse"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 android:layout_marginTop="24dp"
-                android:textColor="#0757F6"/>
+                android:textColor="#0A3A9A"/>
 
             <TextView
                 android:id="@+id/textViewVille"
@@ -429,14 +702,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/editTextAdresse"
                 app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
                 android:layout_marginTop="24dp"
-                android:textColor="#0757F6"/>
+                android:textColor="#0A3A9A"/>
 
             <EditText
                 android:id="@+id/editTextCodePostal"
                 android:layout_width="0dp"
                 android:layout_height="52sp"
                 android:background="@drawable/background_edt"
-                android:hint="@string/et_codePostal"
+                android:hint="Code postal"
                 android:padding="14sp"
                 android:singleLine="true"
                 android:maxLength="5"
@@ -453,130 +726,118 @@
                 android:layout_width="0dp"
                 android:layout_height="52sp"
                 android:background="@drawable/background_edt"
-                android:hint="@string/et_Ville"
+                android:hint="Ville"
                 android:padding="14sp"
                 android:textColorHint="#636363"
                 android:maxLines="1"
                 android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
                 app:layout_constraintTop_toBottomOf="@+id/textViewVille"
-                app:layout_constraintWidth_percent="0.45"
+                app:layout_constraintWidth_percent="0.38"
                 android:textColor="#000000"/>
 
-            <TextView
-                android:id="@+id/textViewSite"
+            <Button
+                android:id="@+id/addLiensButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tv_SiteWeb"
+                android:layout_marginTop="24dp"
+                android:textStyle="bold"
+                android:padding="10dp"
+                android:textSize="12dp"
+                android:background="@drawable/blue_btn_background_2"
+                android:text="Ajouter un site web, LinkedIn, Facebook ..."
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/editTextVille" />
+
+            <TextView
+                android:id="@+id/textViewSiteWeb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Site web *"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/editTextCodePostal"
+                app:layout_constraintTop_toBottomOf="@+id/editTextVille"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 android:layout_marginTop="24dp"
-                android:textColor="#0757F6"/>
+                android:textColor="#0A3A9A"
+                android:visibility="gone"/>
 
             <EditText
                 android:id="@+id/editTextSiteWeb"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="52sp"
                 android:background="@drawable/background_edt"
-                android:hint="@string/et_SiteWeb"
+                android:hint="Site web de l'entreprise"
                 android:padding="14sp"
+                android:singleLine="true"
                 android:textColorHint="#636363"
-                app:layout_constraintTop_toBottomOf="@+id/textViewSite"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSiteWeb"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:visibility="gone"/>
 
             <TextView
-                android:id="@+id/textViewLinkedin"
+                android:id="@+id/textViewLinkedIn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tv_linkedin"
+                android:text="LinkedIn *"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/editTextSiteWeb"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 android:layout_marginTop="24dp"
-                android:textColor="#0757F6"/>
+                android:textColor="#0A3A9A"
+                android:visibility="gone"/>
 
             <EditText
-                android:id="@+id/editTextLinkedin"
+                android:id="@+id/editTextLinkedIn"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="52sp"
                 android:background="@drawable/background_edt"
-                android:hint="@string/et_linkedin"
+                android:hint="LinkedIn de l'entreprise"
                 android:padding="14sp"
+                android:singleLine="true"
                 android:textColorHint="#636363"
-                app:layout_constraintTop_toBottomOf="@+id/textViewLinkedin"
+                app:layout_constraintTop_toBottomOf="@+id/textViewLinkedIn"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/textViewFacebook"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tv_Facebook"
+                android:text="Facebook *"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/editTextLinkedin"
+                app:layout_constraintTop_toBottomOf="@+id/editTextLinkedIn"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 android:layout_marginTop="24dp"
-                android:textColor="#0757F6"/>
+                android:textColor="#0A3A9A"
+                android:visibility="gone"/>
 
             <EditText
                 android:id="@+id/editTextFacebook"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="52sp"
                 android:background="@drawable/background_edt"
-                android:hint="@string/et_Facebook"
+                android:hint="Facebook de l'entreprise"
                 android:padding="14sp"
+                android:singleLine="true"
                 android:textColorHint="#636363"
                 app:layout_constraintTop_toBottomOf="@+id/textViewFacebook"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:visibility="gone"/>
 
-            <TextView
-                android:id="@+id/textViewMdp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tv_Mdp"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/editTextFacebook"
-                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
-                android:layout_marginTop="24dp"
-                android:textColor="#0757F6"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/passwordInputLayout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/textViewMdp"
-                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
-                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
-                app:passwordToggleEnabled="true"
-                app:passwordToggleTint="#636363"
-                app:endIconMode="password_toggle"
-                app:endIconTint="#636363"
-                android:background="@drawable/background_edt"
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/champMotdePasse"
-                    android:inputType="textPassword"
-                    android:textColor="#000000"
-                    android:textColorHint="#636363" />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/login_button"
+                android:id="@+id/register_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/blue_btn_background"
@@ -584,12 +845,13 @@
                 android:textColor="#ffffff"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/passwordInputLayout"
+                app:layout_constraintTop_toBottomOf="@+id/addLiensButton"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginBottom="24dp"/>
+
 
 
 

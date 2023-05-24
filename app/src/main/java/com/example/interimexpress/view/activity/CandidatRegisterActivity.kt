@@ -1,20 +1,18 @@
 package com.example.interimexpress.view.activity
 
 
-import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.interimexpress.R
 import com.example.interimexpress.adapter.NationalitySpinnerAdapter
-import com.example.interimexpress.controller.UtilisateurController
-import com.example.interimexpress.model.Utilisateur
+import com.example.interimexpress.controller.CandidatController
+import com.example.interimexpress.model.Candidat
 import com.hbb20.CountryCodePicker
 import java.util.*
 class CandidatRegisterActivity : AppCompatActivity() {
@@ -23,15 +21,14 @@ class CandidatRegisterActivity : AppCompatActivity() {
     private lateinit var editTextPhoneNumber: EditText
     private lateinit var nationalitySpinner: Spinner
 
-    private lateinit var utilisateurController: UtilisateurController
+    private lateinit var candidatController: CandidatController
     private lateinit var nomEditText: EditText
     private lateinit var prenomEditText: EditText
     private lateinit var adresseMailEditText: EditText
     private lateinit var motDePasseEditText: EditText
 
-    private lateinit var daySpinner: AutoCompleteTextView
-    private lateinit var monthSpinner: AutoCompleteTextView
-    private lateinit var yearSpinner: AutoCompleteTextView
+    private lateinit var editTextDate: EditText
+
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -42,15 +39,12 @@ class CandidatRegisterActivity : AppCompatActivity() {
         ccp = findViewById(R.id.countryCodePicker)
         editTextPhoneNumber = findViewById(R.id.editTextPhoneNumber)
         nationalitySpinner = findViewById(R.id.spinnerNationality)
-
-        daySpinner = findViewById(R.id.daySpinner)
-        monthSpinner = findViewById(R.id.monthSpinner)
-        yearSpinner = findViewById(R.id.yearSpinner)
+        editTextDate = findViewById(R.id.editTextDate)
 
 
         setupSpinner()
         setupCountryCodePicker()
-        setupSpinners()
+        setupDateEditText()
 
         nomEditText = findViewById(R.id.editTextNom)
         prenomEditText = findViewById(R.id.editTextPrenom)
@@ -58,11 +52,11 @@ class CandidatRegisterActivity : AppCompatActivity() {
         motDePasseEditText = findViewById(R.id.editTextPassword)
         nationalitySpinner = findViewById(R.id.spinnerNationality)
         ccp = findViewById(R.id.countryCodePicker)
-        utilisateurController = UtilisateurController()
+        candidatController = CandidatController()
 
         val registerButton = findViewById<Button>(R.id.inscrire_button)
         registerButton.setOnClickListener {
-            registerUser()
+            registerCandidat()
         }
 
 
@@ -75,21 +69,6 @@ class CandidatRegisterActivity : AppCompatActivity() {
         val adapter = NationalitySpinnerAdapter(this, nationalities)
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
         nationalitySpinner.adapter = adapter
-    }
-
-    private fun setupSpinners() {
-        val days = (1..31).map { it.toString() }.toTypedArray()
-        val months = (1..12).map { it.toString() }.toTypedArray()
-        val years = (1900..Calendar.getInstance().get(Calendar.YEAR)).map { it.toString() }.reversed().toTypedArray()
-
-        val dayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, days)
-        daySpinner.setAdapter(dayAdapter)
-
-        val monthAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, months)
-        monthSpinner.setAdapter(monthAdapter)
-
-        val yearAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, years)
-        yearSpinner.setAdapter(yearAdapter)
     }
 
 
@@ -118,20 +97,20 @@ class CandidatRegisterActivity : AppCompatActivity() {
     }
 
 
-    private fun registerUser() {
+    private fun registerCandidat() {
         val nom = nomEditText.text.toString()
         val prenom = prenomEditText.text.toString()
         val adresseMail = adresseMailEditText.text.toString()
         val motDePasse = motDePasseEditText.text.toString()
         val nationalite = nationalitySpinner.selectedItem.toString()
         val numTelephone = ccp.fullNumberWithPlus
-        val dateNaissance = "${daySpinner.text}-${monthSpinner.text}-${yearSpinner.text}"
+        val dateNaissance = editTextDate.text.toString()
 
-        val utilisateur = Utilisateur(
-            id = adresseMail, // Ici, nous utilisons l'adresse e-mail comme ID car elle est unique pour chaque utilisateur.
+
+        val candidat = Candidat(
+            adresseMail = adresseMail, // Ici, nous utilisons l'adresse e-mail comme ID car elle est unique pour chaque utilisateur.
             nom = nom,
             prenom = prenom,
-            adresseMail = adresseMail,
             motDePasse = motDePasse,
             role = "Candidat", // Pour cette activité, nous fixons le rôle à "Candidat".
             nationalite = nationalite,
@@ -139,11 +118,58 @@ class CandidatRegisterActivity : AppCompatActivity() {
             dateNaissance = dateNaissance
         )
 
-        utilisateurController.insertUtilisateur(utilisateur)
+        candidatController.insertCandidat(candidat)
 
         val intent = Intent(this, ConfirmationInscriptionActivity::class.java)
         startActivity(intent)
     }
+
+    private fun setupDateEditText() {
+        editTextDate.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) { }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val str = s.toString()
+                if ((str.length == 2 || str.length == 5) && count != 0 && !str.endsWith("/")) {
+                    editTextDate.setText("$str/")
+                    editTextDate.setSelection(str.length + 1)
+                }
+
+                if (str.length == 10 && !isValidDate(str)) {
+                    editTextDate.error = "Date invalide"
+                }
+            }
+        })
+    }
+
+    private fun isValidDate(date: String): Boolean {
+        val parts = date.split("/")
+        if (parts.size != 3) {
+            return false
+        }
+
+        val day = parts[0].toIntOrNull() ?: return false
+        val month = parts[1].toIntOrNull() ?: return false
+        val year = parts[2].toIntOrNull() ?: return false
+
+        if (day !in 1..31 || month !in 1..12 || year < 1900 || year > Calendar.getInstance().get(Calendar.YEAR)) {
+            return false
+        }
+
+        val calendar = Calendar.getInstance()
+        calendar.isLenient = false
+        calendar.set(year, month - 1, day)
+        return try {
+            calendar.time
+            true
+        } catch (e: IllegalArgumentException) {
+            false
+        }
+    }
+
+
 
 
 

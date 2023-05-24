@@ -14,6 +14,7 @@
     <!-- Les couleurs pour le datepickers-->
     <color name="colorAccent">#0757F6</color>
     <color name="colorPrimary">#064DD8</color>
+    <color name="colorPrimary2">#0A3A9A</color>
 
     <color name="password_toggle_tint">#636363</color>
 
