@@ -18,4 +18,8 @@
 
     <color name="password_toggle_tint">#636363</color>
 
+    <color name="rosee">#F9F3FF</color>
+
+    <color name="orange">#873B01</color>
+
 </resources>
