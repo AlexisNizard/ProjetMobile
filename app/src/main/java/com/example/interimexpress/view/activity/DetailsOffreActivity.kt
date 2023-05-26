@@ -70,6 +70,10 @@ class DetailsOffreActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.rechercherOffreSimi.setOnClickListener{
+            addRechAnnSimi()
+        }
+
 
     }
 
@@ -86,6 +90,14 @@ class DetailsOffreActivity : AppCompatActivity() {
         if (footerFragment != null) {
             supportFragmentManager.beginTransaction().hide(footerFragment).commit()
         }
+    }
+
+    private fun addRechAnnSimi() {
+        val chipGroupContainer: ConstraintLayout = findViewById(R.id.chipGroupContainer)
+        val sendButton: Button = findViewById(R.id.sendButton)
+
+        chipGroupContainer.visibility = View.VISIBLE
+        sendButton.visibility = View.VISIBLE
     }
 
     private fun faire_apparaitre_co_inscr(){
