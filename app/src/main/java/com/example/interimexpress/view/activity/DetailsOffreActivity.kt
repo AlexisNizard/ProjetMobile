@@ -1,15 +1,22 @@
 package com.example.interimexpress.view.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import com.example.interimexpress.R
 import com.example.interimexpress.controller.OffreController
 import com.example.interimexpress.databinding.ActivityDetailsOffreBinding
 import com.example.interimexpress.model.Offre
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.firestore.FirebaseFirestore
 
 class DetailsOffreActivity : AppCompatActivity() {
@@ -23,6 +30,16 @@ class DetailsOffreActivity : AppCompatActivity() {
         binding = ActivityDetailsOffreBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val sharedPreferences = getSharedPreferences("InterimExpress", Context.MODE_PRIVATE)
+        val userRole = sharedPreferences.getString("userRole", "")
+        //println(userRole)
+        if (userRole == "Candidat") {
+
+        } else {
+            masquer_vue_anonyme();
+        }
+
+
         binding.logo.setOnClickListener {
             val intent = Intent(this, CandidatDashboardActivity::class.java)
             startActivity(intent)
@@ -35,10 +52,63 @@ class DetailsOffreActivity : AppCompatActivity() {
 
 
         binding.rechercherButton.setOnClickListener {
-            val intent = Intent(this, PostulerOffreActivity::class.java)
+            if (userRole == "Candidat") {
+                val intent = Intent(this, PostulerOffreActivity::class.java)
+                startActivity(intent)
+            } else {
+                faire_apparaitre_co_inscr();
+            }
+        }
+
+        binding.rechercherButton1.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
+        binding.rechercherButton2.setOnClickListener {
+            val intent = Intent(this, CandidatRegisterActivity::class.java)
+            startActivity(intent)
+        }
+
+
+    }
+
+    private fun masquer_vue_anonyme(){
+        val logo: ImageView = findViewById(R.id.logo)
+        logo.visibility = View.GONE
+        val imageView: ImageView = findViewById(R.id.imageView)
+        imageView.visibility = View.GONE
+
+        // Get an instance of the fragment
+        val footerFragment = supportFragmentManager.findFragmentById(R.id.footerFragment)
+
+        // Hide the fragment
+        if (footerFragment != null) {
+            supportFragmentManager.beginTransaction().hide(footerFragment).commit()
+        }
+    }
+
+    private fun faire_apparaitre_co_inscr(){
+        val veuillez_identif: TextView = findViewById(R.id.veuillez_identif)
+        veuillez_identif.visibility = View.VISIBLE
+
+
+        val rechercher_button1: Button = findViewById(R.id.rechercher_button1)
+        rechercher_button1.visibility = View.VISIBLE
+
+        val rechercher_button2: Button = findViewById(R.id.rechercher_button2)
+        rechercher_button2.visibility = View.VISIBLE
+
+        val rechercher_button: Button = findViewById(R.id.rechercher_button)
+        rechercher_button.visibility = View.GONE
+
+
+        val constraintLayout1: ConstraintLayout = findViewById(R.id.parent_constr)
+        val constraintSet1 = ConstraintSet()
+        constraintSet1.clone(constraintLayout1)
+
+        constraintSet1.connect(R.id.veuillez_identif, ConstraintSet.TOP, R.id.titre4, ConstraintSet.BOTTOM)
+        constraintSet1.applyTo(constraintLayout1)
 
     }
 

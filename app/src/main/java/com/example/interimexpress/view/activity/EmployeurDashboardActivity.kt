@@ -3,16 +3,15 @@ package com.example.interimexpress.view.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.interimexpress.R
 
-class CandidatDashboardActivity : AppCompatActivity() {
+class EmployeurDashboardActivity  : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_candidat_dashboard)
+        setContentView(R.layout.activity_employeur_dashboard)
 
         val logout = findViewById<ImageView>(R.id.logout)
 

@@ -6,6 +6,7 @@ import com.example.interimexpress.model.InitialData
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 
 class EmployeurController {
 
@@ -37,5 +38,13 @@ class EmployeurController {
         }.addOnFailureListener { exception ->
             Log.e("EmployeurController", "Erreur lors de la récupération de la version", exception)
         }
+    }
+
+    fun getEmployeurByMailAndPassword(mail: String, password: String): Task<QuerySnapshot> {
+        return employeursCollection
+            .whereEqualTo("adresseMail", mail)
+            .whereEqualTo("motDePasse", password)
+            .limit(1)
+            .get()
     }
 }

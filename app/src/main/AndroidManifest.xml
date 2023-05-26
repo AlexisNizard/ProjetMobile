@@ -29,6 +29,8 @@
         <activity
             android:name=".view.activity.CandidatDashboardActivity" />
         <activity
+            android:name=".view.activity.EmployeurDashboardActivity" />
+        <activity
             android:name=".view.activity.DetailsOffreActivity" />
         <activity
             android:name=".view.activity.PostulerOffreActivity" />

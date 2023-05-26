@@ -1,7 +1,10 @@
 package com.example.interimexpress.view.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -26,6 +29,16 @@ class RechercheOffresActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recherche_offres)
 
+        val sharedPreferences = getSharedPreferences("InterimExpress", Context.MODE_PRIVATE)
+        val userRole = sharedPreferences.getString("userRole", "")
+        //println(userRole)
+        if (userRole == "Candidat") {
+
+        } else {
+            masquer_vue_anonyme();
+        }
+
+
         val imgProfil = findViewById<ImageView>(R.id.logo);
 
         imgProfil.setOnClickListener {
@@ -48,48 +61,22 @@ class RechercheOffresActivity : AppCompatActivity() {
         }
 
 
-        /*
-        val imgProfil = findViewById<ImageView>(R.id.logo);
-        val offreLayout = findViewById<ConstraintLayout>(R.id.offre)
-        val titre = findViewById<TextView>(R.id.titre)
-        val societe = findViewById<TextView>(R.id.societe)
-        val adresse = findViewById<TextView>(R.id.adresse)
-        val description = findViewById<TextView>(R.id.description)
-        val datePublic = findViewById<TextView>(R.id.date_public)
+    }
 
-        offreController = OffreController()
-        val id : String = "1"
+    private fun masquer_vue_anonyme(){
+        val logo: ImageView = findViewById(R.id.logo)
+        logo.visibility = View.GONE
+        val imageView: ImageView = findViewById(R.id.imageView)
+        imageView.visibility = View.GONE
 
-        offreController.getOffre(id).addOnSuccessListener { document ->
-            if (document != null) {
-                titre.text = document.getString("titre")
-                societe.text = document.getString("entreprise")
-                adresse.text = document.getString("adresse")
-                description.text = document.getString("description")
+        // Get an instance of the fragment
+        val footerFragment = supportFragmentManager.findFragmentById(R.id.footerFragment)
 
-                val dateCreation = document.getTimestamp("dateCreation") ?: Timestamp.now()
-                val daysSinceCreation = TimeUnit.MILLISECONDS.toDays(
-                    Timestamp.now().toDate().time - dateCreation.toDate().time)
-
-                datePublic.text = if (daysSinceCreation == 0L) {
-                    "Offre publiée depuis moins d'1 jour"
-                } else {
-                    "Offre publiée il y a $daysSinceCreation jours"
-                }
-            }
+        // Hide the fragment
+        if (footerFragment != null) {
+            supportFragmentManager.beginTransaction().hide(footerFragment).commit()
         }
 
-        imgProfil.setOnClickListener {
-            val intent = Intent(this, CandidatDashboardActivity::class.java)
-            startActivity(intent)
-        }
-
-        offreLayout.setOnClickListener {
-            val intent = Intent(this, DetailsOffreActivity::class.java)
-            startActivity(intent)
-        }
-
-         */
     }
 }
 
