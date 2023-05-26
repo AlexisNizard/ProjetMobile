@@ -23,11 +23,14 @@ class OffreController {
     }
 
     fun insertOffre(offre: Offre) {
+        Log.d("OffreController", "Attempting to insert offre: $offre")
         offre.id?.let {
             offresCollection.document(it.toString()).set(offre).addOnFailureListener { exception ->
                 Log.e("OffreController", "Erreur lors de l'insertion d'une offre", exception)
             }
         }
+
+        Log.d("OffreController", "Offre inserted successfully.")
     }
 
 

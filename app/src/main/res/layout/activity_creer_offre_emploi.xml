@@ -1,6 +1,372 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FDFAFF"
+    tools:context=".view.activity.MainActivity">
 
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="-16dp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/parent_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="28dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.92" />
+
+
+            <ImageView
+                android:id="@+id/banner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_dashboard14"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo"
+                app:layout_constraintBottom_toBottomOf="@id/banner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/banner" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Créer une offre"
+                android:textAlignment="center"
+                android:textColor="#0D3C9A"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/logo" />
+
+            <TextView
+                android:id="@+id/textViewTitreOffre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Nom offre"
+                android:textColor="#0A3A9A"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
+
+            <EditText
+                android:id="@+id/editTextTitreOffre"
+                android:layout_width="0dp"
+                android:layout_height="52sp"
+                android:background="@drawable/background_edt"
+                android:hint="ex: Développeur Full Stack (H/F)"
+                android:padding="14sp"
+                android:singleLine="true"
+                android:textColor="#000000"
+                android:textColorHint="#636363"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/textViewTitreOffre" />
+
+            <TextView
+                android:id="@+id/textViewNomEntreprise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Nom entreprise"
+                android:textColor="#0A3A9A"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTitreOffre" />
+
+            <EditText
+                android:id="@+id/editTextNomEntreprise"
+                android:layout_width="0dp"
+                android:layout_height="52sp"
+                android:background="@drawable/background_edt"
+                android:hint="Votre nom d'entreprise"
+                android:padding="14sp"
+                android:singleLine="true"
+                android:textColor="#000000"
+                android:textColorHint="#636363"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/textViewNomEntreprise" />
+
+
+            <TextView
+                android:id="@+id/textViewMail1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Adresse mail"
+                android:textColor="#0A3A9A"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/editTextNomEntreprise" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editTextMail1_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-11dp"
+                android:textColorHint="#636363"
+                app:boxStrokeColor="#636363"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/textViewMail1"
+                app:startIconDrawable="@drawable/baseline_email_24"
+                app:startIconTint="#636363">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextMail1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background_edt"
+                    android:hint="Votre adresse mail"
+                    android:padding="14dp"
+                    android:textColor="#000000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textViewCodePostal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Code postal"
+                android:textColor="#0A3A9A"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/editTextMail1_layout" />
+
+            <TextView
+                android:id="@+id/textViewVille"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/tv_Ville"
+                android:textColor="#0A3A9A"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintTop_toBottomOf="@+id/editTextMail1_layout" />
+
+            <EditText
+                android:id="@+id/editTextCodePostal"
+                android:layout_width="0dp"
+                android:layout_height="52sp"
+                android:background="@drawable/background_edt"
+                android:digits="0123456789"
+                android:hint="Code postal"
+                android:inputType="number"
+                android:maxLength="5"
+                android:padding="14sp"
+                android:singleLine="true"
+                android:textColor="#000000"
+                android:textColorHint="#636363"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/textViewCodePostal"
+                app:layout_constraintWidth_percent="0.38" />
+
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteVille"
+                android:layout_width="0dp"
+                android:layout_height="52sp"
+                android:background="@drawable/background_edt"
+                android:hint="Ville"
+                android:maxLines="1"
+                android:padding="14sp"
+                android:singleLine="true"
+                android:textColor="#000000"
+                android:textColorHint="#636363"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintTop_toBottomOf="@+id/textViewVille"
+                app:layout_constraintWidth_percent="0.38" />
+
+            <TextView
+                android:id="@+id/textViewTypeContrat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Type de contrat"
+                android:textColor="#0A3A9A"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/autoCompleteVille" />
+
+            <Spinner
+                android:id="@+id/spinnerTypeContrat"
+                android:layout_width="0dp"
+                android:layout_height="52sp"
+                android:background="@drawable/background_edt"
+                android:padding="14sp"
+                android:textColorHint="#000000"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/textViewTypeContrat" />
+
+            <TextView
+                android:id="@+id/textViewRemuneration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Rémunération (brut par mois)"
+                android:textColor="#0A3A9A"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerTypeContrat" />
+
+            <EditText
+                android:id="@+id/editTextRemuneration"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:background="@drawable/background_edt"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRemuneration"
+                android:textColor="@color/black"
+                android:padding="14sp"
+                android:singleLine="true"
+                android:inputType="number"/>
+
+            <TextView
+                android:id="@+id/textViewDateDebut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Date de début"
+                android:textColor="#0A3A9A"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/editTextRemuneration" />
+
+            <TextView
+                android:id="@+id/textViewDateFin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Date de fin"
+                android:textColor="#0A3A9A"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintTop_toBottomOf="@+id/editTextRemuneration" />
+
+
+            <EditText
+                android:id="@+id/editTextDateDebut"
+                android:layout_width="0dp"
+                android:layout_height="52sp"
+                android:background="@drawable/background_edt"
+                android:focusable="false"
+                android:hint="JJ/MM/AAAA"
+                android:padding="14sp"
+                android:singleLine="true"
+                android:textColor="#000000"
+                android:textColorHint="#636363"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/textViewDateDebut"
+                app:layout_constraintWidth_percent="0.38"/>
+
+
+            <EditText
+                android:id="@+id/editTextDateFin"
+                android:layout_width="0dp"
+                android:layout_height="52sp"
+                android:background="@drawable/background_edt"
+                android:focusable="false"
+                android:hint="JJ/MM/AAAA"
+                android:padding="14sp"
+                android:singleLine="true"
+                android:textColor="#000000"
+                android:textColorHint="#636363"
+                app:layout_constraintWidth_percent="0.38"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintTop_toBottomOf="@+id/textViewDateFin" />
+
+
+            <TextView
+                android:id="@+id/textViewDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Description offre"
+                android:textColor="#0A3A9A"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/editTextDateFin" />
+
+            <EditText
+                android:id="@+id/editTextDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_edt"
+                android:hint="ex: Préciser des informations supplémentaires (compétences, détails offre...)"
+                android:textSize="15sp"
+                android:inputType="textMultiLine"
+                android:padding="14sp"
+                android:textColor="#000000"
+                android:textColorHint="#636363"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
+
+            <Button
+                android:id="@+id/btn_creationOffre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/blue_btn_background"
+                android:text="Créer offre"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
+
