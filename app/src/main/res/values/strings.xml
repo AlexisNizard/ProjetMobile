@@ -1,0 +1,72 @@
+<resources>
+    <!-- activity_main -->
+    <string name="app_name">InterimExpress</string>
+    <string name="nomAppli">Bienvenue sur InterimExpress</string>
+    <string name="texteAccroche">Trouvez votre prochain emploi en quelques clics avec notre application d\'interim !</string>
+    <string name="se_connecter">Se connecter</string>
+    <string name="titreSeConnecter">Se connecter à votre compte</string>
+    <string name="messageAnonyme">Continuer en tant qu\'anonyme</string>
+    <string name="s_inscrire">S\'inscrire</string>
+
+
+    <!-- login_main -->
+    <string name="connecVous">Connectez-vous à votre compte</string>
+    <string name="champEmail">Votre adresse mail</string>
+    <string name="champMotdePasse">Votre mot de passe</string>
+    <string name="mot_de_passe_oublie">Mot de passe oublié</string>
+    <string name="creer_compte">Créer mon compte</string>
+
+    <!-- register_main -->
+    <string name="champnom">Votre nom</string>
+    <string name="champprenom">Votre prénom</string>
+    <string name="champNationalite">Votre nationalité</string>
+    <string name="champTel">Votre numéro de téléphone</string>
+    <string name="champBirthdate">Votre date de naissance</string>
+    <string name="champVille">Votre ville</string>
+
+    <string name="agence">Agence</string>
+    <string name="employeur">Employeur</string>
+    <string name="candidat">Candidat</string>
+    <string name="titreChoixRegister">Qui êtes-vous?</string>
+    <string name="creer_compte_employe">Créer mon compte employé</string>
+    <string name="nom_entreprise">Nom entreprise</string>
+    <string name="titrePageInscriptionAgence">Créer mon compte agence</string>
+    <string name="champNomAgence">Nom agence</string>
+    <string name="et_nomAgence">Votre nom d\'agence</string>
+    <string name="tv_nomService">Nom service/département</string>
+    <string name="et_nomService">Votre nom de service/département</string>
+    <string name="tv_nomSousService">Nom sous-service/sous-département</string>
+    <string name="et_nomSousService">Votre nom de sous-service/sous-département</string>
+    <string name="tv_numSiret">Numéro SIRET</string>
+    <string name="et_numSiret">Votre numéro de SIRET</string>
+    <string name="tv_contact1">Nom de contact principal</string>
+    <string name="et_contact">Votre nom</string>
+    <string name="tv_contact2">Nom de contact secondaire</string>
+    <string name="tv_Mail">Adresse mail principale</string>
+    <string name="tv_mail2">Adresse mail secondaire</string>
+    <string name="tv_tel1">Numéro de téléphone principal</string>
+    <string name="et_tel1">Votre téléphone principal</string>
+    <string name="tv_tel2">Numéro de téléphone secondaire</string>
+    <string name="et_tel2">Votre téléphone secondaire</string>
+    <string name="tv_Adresse">Adresse</string>
+    <string name="et_Adresse">Votre adresse</string>
+    <string name="tv_codePostal">Code postal</string>
+    <string name="tv_Ville">Ville</string>
+    <string name="et_codePostal">Votre cp</string>
+    <string name="et_Ville">Votre ville</string>
+    <string name="tv_SiteWeb">Site web</string>
+    <string name="et_SiteWeb">Lien de votre site web</string>
+    <string name="tv_linkedin">LinkedIn</string>
+    <string name="et_linkedin">Lien de votre LinkedIn</string>
+    <string name="tv_Facebook">Facebook</string>
+    <string name="et_Facebook">Lien de votre Facebook</string>
+    <string name="tv_Mdp">Mot de passe</string>
+    <string name="register_button">S\'inscrire</string>
+    <string name="contentDescriptionBanniere">imageBanniere</string>
+    <string name="contentDescriptionImgLogo">imageLogo</string>
+    <string name="et_nomEntreprise">Votre nom d\'entreprise</string>
+
+
+    <string name="rechercher"><i>Rechercher...</i></string>
+
+</resources>

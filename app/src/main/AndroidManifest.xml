@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.InterimExpress"
+        tools:targetApi="31">
+        <activity
+            android:name=".view.activity.LoginActivity" />
+        <activity
+            android:name=".view.activity.ChoisirRoleActivity" />
+        <activity
+            android:name=".view.activity.CandidatRegisterActivity" />
+        <activity
+            android:name=".view.activity.EmployeurRegisterActivity" />
+        <activity
+            android:name=".view.activity.AgenceRegisterActivity" />
+        <activity
+            android:name=".view.activity.RechercheOffresActivity" />
+        <activity
+            android:name=".view.activity.CandidatDashboardActivity" />
+        <activity
+            android:name=".view.activity.EmployeurDashboardActivity" />
+        <activity
+            android:name=".view.activity.DetailsOffreActivity" />
+        <activity
+            android:name=".view.activity.PostulerOffreActivity" />
+        <activity
+            android:name=".view.activity.ConfirmationInscriptionActivity" />
+        <!--android:name=".view.activity.ConfirmationInscriptionActivity"-->
+        <activity
+          android:name=".view.activity.MainActivity"
+          android:exported="true">
+        <intent-filter>
+              <action android:name="android.intent.action.MAIN" />
+
+              <category android:name="android.intent.category.LAUNCHER" />
+          </intent-filter>
+        </activity>
+
+        <!--<activity
+            android:name=".view.activity.ConfirmationInscriptionActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>-->
+
+
+    </application>
+
+</manifest>
