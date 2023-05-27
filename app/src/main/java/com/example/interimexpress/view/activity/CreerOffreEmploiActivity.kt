@@ -1,5 +1,6 @@
 package com.example.interimexpress.view.activity
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.ContentValues.TAG
 import android.graphics.Color
@@ -14,6 +15,7 @@ import com.example.interimexpress.R
 import com.example.interimexpress.controller.CandidatController
 import com.example.interimexpress.controller.OffreController
 import com.example.interimexpress.model.Offre
+import com.google.firebase.Timestamp
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,6 +23,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
+import java.text.SimpleDateFormat
 import java.util.*
 
 class CreerOffreEmploiActivity : AppCompatActivity() {
@@ -30,10 +33,15 @@ class CreerOffreEmploiActivity : AppCompatActivity() {
     private lateinit var nomEntrepriseEditText: EditText
     private lateinit var codePostalEditText: EditText
     private lateinit var villeAutoComplete: AutoCompleteTextView
+    private lateinit var contratSpinner: Spinner
+    private lateinit var remunerationEditText: EditText
+    private lateinit var dateDebutEditText: EditText
+    private lateinit var dateFinEditText: EditText
     private lateinit var descriptionEditText: EditText
     private lateinit var creerOffreButton: Button
 
 
+    @SuppressLint("CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_creer_offre_emploi)
@@ -45,6 +53,10 @@ class CreerOffreEmploiActivity : AppCompatActivity() {
         codePostalEditText = findViewById(R.id.editTextCodePostal)
         villeAutoComplete = findViewById(R.id.autoCompleteVille)
         descriptionEditText = findViewById(R.id.editTextDescription)
+        contratSpinner = findViewById(R.id.spinnerTypeContrat)
+        remunerationEditText = findViewById(R.id.editTextRemuneration)
+        dateDebutEditText = findViewById(R.id.editTextDateDebut)
+        dateFinEditText = findViewById(R.id.editTextDateFin)
 
         creerOffreButton = findViewById(R.id.btn_creationOffre)
 
@@ -85,16 +97,14 @@ class CreerOffreEmploiActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable) {}
         })
 
-        //Pour TypeContrat
-        val spinner: Spinner = findViewById(R.id.spinnerTypeContrat)
-
+        //Pour TypeContrat*
         ArrayAdapter.createFromResource(
             this,
             R.array.contract_types,
             R.layout.spinner_remuneration
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner.adapter = adapter
+            contratSpinner.adapter = adapter
         }
 
         //Pour rémunération
@@ -150,22 +160,39 @@ class CreerOffreEmploiActivity : AppCompatActivity() {
         creerOffreButton.setOnClickListener {
             Log.d("CreerOffreEmploiActivity", "Creer Offre button clicked.")
             registerOffre()
+            finish()
         }
     }
 
     private fun registerOffre(){
         val titre = titreOffreEditText.text.toString()
         val entreprise = nomEntrepriseEditText.text.toString()
-        val adresse = "${codePostalEditText.text.toString()} ${villeAutoComplete.text.toString()}"
+        val adresse = codePostalEditText.text.toString()
+        val cp = villeAutoComplete.text.toString()
         val description = descriptionEditText.text.toString()
+        val contrat = contratSpinner.selectedItem.toString()
+        val remunerationString = remunerationEditText.text.toString()
+        val remuneration = if (remunerationString.isNullOrBlank()) null else remunerationString.toDouble()
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val dateDebutString = dateDebutEditText.text.toString()
+        val dateDebut = if (dateDebutString.isNullOrBlank()) null else Timestamp(dateFormat.parse(dateDebutString))
+        val dateFinString = dateFinEditText.text.toString()
+        val dateFin = if (dateFinString.isNullOrBlank()) null else Timestamp(dateFormat.parse(dateFinString))
 
         val offre = Offre(
             id = null, // L'id sera généré automatiquement par Firestore
             titre = titre,
             entreprise = entreprise,
             adresse = adresse,
+            cp=cp,
+            mail = null,
+            typeContrat = contrat,
+            remuneration = remuneration,
+            dateDebut = dateDebut,
+            dateFin = dateFin,
             description = description,
-            dateCreation = null // Vous pouvez mettre à jour cette valeur si nécessaire
+            dateCreation = null,
+            nbrClick = 0
         )
 
         offreController.insertOffre(offre)

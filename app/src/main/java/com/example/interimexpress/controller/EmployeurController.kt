@@ -18,6 +18,7 @@ class EmployeurController {
         return employeursCollection.document(id).get()
     }
 
+
     fun insertEmployeur(employeur: Employeur) {
         employeur.adresseMail?.let {
             employeursCollection.document(it.toString()).set(employeur).addOnFailureListener { exception ->

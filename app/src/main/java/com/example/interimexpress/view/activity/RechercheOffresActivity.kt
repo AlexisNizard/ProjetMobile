@@ -15,11 +15,13 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.interimexpress.R
+import com.example.interimexpress.adapter.GeocodingUtils
 import com.example.interimexpress.adapter.OffreAdapter
 import com.example.interimexpress.controller.OffreController
 import com.example.interimexpress.model.Offre
 import com.google.android.material.slider.RangeSlider
 import com.google.firebase.Timestamp
+import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -33,8 +35,9 @@ class RechercheOffresActivity : AppCompatActivity() {
     private lateinit var debEditText: Button
     private lateinit var finEditText: Button
     private lateinit var settings_: ImageView
+    private lateinit var rechercher_button : Button
 
-    private var click = 1
+    private var bool_c = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +52,9 @@ class RechercheOffresActivity : AppCompatActivity() {
             masquer_vue_anonyme();
         }
 
+        val (latitude, longitude) = MainActivity.getLocationFromSharedPrefs(this)
+        println("Latitude: $latitude, Longitude: $longitude")
+
 
         val imgProfil = findViewById<ImageView>(R.id.logo);
 
@@ -58,18 +64,40 @@ class RechercheOffresActivity : AppCompatActivity() {
         }
 
 
+
         offresRecyclerView = findViewById(R.id.offres_recycler_view)
         offresRecyclerView.layoutManager = LinearLayoutManager(this)
 
         offreController = OffreController()
 
-        offreController.getOffres().addOnSuccessListener { documents ->
-            if (documents != null) {
-                val offres = documents.toObjects(Offre::class.java)
-                offreAdapter = OffreAdapter(offres)
-                offresRecyclerView.adapter = offreAdapter
+        offreAdapter = OffreAdapter(emptyList())
+        offresRecyclerView.adapter = offreAdapter
+
+        val location = MainActivity.getLocationFromSharedPrefs(this)
+        val geocodingUtils = GeocodingUtils(this)
+
+        val cityName = geocodingUtils.getCityName(location.first, location.second)
+        if (cityName != null) {
+            offreController.getOffresByCity(cityName).addOnSuccessListener { documents ->
+                if (documents != null) {
+                    println(cityName)
+                    val offres = documents.toObjects(Offre::class.java)
+                    println(offres.size)
+                    offreAdapter.updateOffreList(offres)
+                }
+            }
+        } else {
+            println("on entre dans le else")
+            offreController.getTop10Offres().addOnSuccessListener { offres ->
+                if (offres != null) {
+                    println(offres.size)
+                    offreAdapter.updateOffreList(offres)
+                }
             }
         }
+
+
+
 
         debEditText = findViewById(R.id.deb)
         finEditText = findViewById(R.id.fin)
@@ -127,6 +155,12 @@ class RechercheOffresActivity : AppCompatActivity() {
         }
 
 
+        rechercher_button = findViewById(R.id.rechercher_button)
+        rechercher_button.setOnClickListener {
+                searchOffres()
+        }
+
+
     }
 
     private fun masquer_vue_anonyme(){
@@ -150,18 +184,58 @@ class RechercheOffresActivity : AppCompatActivity() {
         val register_container4: ConstraintLayout = findViewById(R.id.register_container4)
         val register_container5: ConstraintLayout = findViewById(R.id.register_container5)
 
-        if (click==1){
+        if (bool_c==1){
             register_container3.visibility = View.VISIBLE
             register_container4.visibility = View.VISIBLE
             register_container5.visibility = View.VISIBLE
-            click=0
+            bool_c=0
         }else{
             register_container3.visibility = View.GONE
             register_container4.visibility = View.GONE
             register_container5.visibility = View.GONE
-            click=1
+            bool_c=1
         }
 
+    }
+
+    private fun searchOffres() {
+        // Obtenir les valeurs de tous les champs de saisie
+        val quoi = findViewById<EditText>(R.id.register_button).text.toString()
+        val ou = findViewById<EditText>(R.id.register_button2).text.toString()
+        val typeContrat = findViewById<Spinner>(R.id.type_dropdown).selectedItem.toString()
+        val deb = findViewById<Button>(R.id.deb).text.toString()
+        val fin = findViewById<Button>(R.id.fin).text.toString()
+        val minSalary = findViewById<EditText>(R.id.min_salary).text.toString().toDoubleOrNull()
+        val maxSalary = findViewById<EditText>(R.id.max_salary).text.toString().toDoubleOrNull()
+
+        offreController.getAllOffres().addOnSuccessListener { documents ->
+            if (documents != null) {
+                val allOffres = documents.toObjects(Offre::class.java)
+
+                val filteredOffres = allOffres.filter { offre ->
+                    val isQuoiValid = quoi.isEmpty() || offre.titre?.contains(quoi, ignoreCase = true) == true || offre.entreprise?.contains(quoi, ignoreCase = true) == true
+                    val isOuValid = ou.isEmpty() || offre.adresse?.contains(ou, ignoreCase = true) == true || offre.cp?.contains(ou, ignoreCase = true) == true
+                    val isTypeValid = typeContrat == "Tout type d'emploi" || offre.typeContrat?.toUpperCase() == typeContrat.toUpperCase()
+                    val isDebValid = deb == "Début" || offre.dateDebut?.toDate()?.after(stringToDate(deb)) == true
+                    val isFinValid = fin == "Fin" || offre.dateFin?.toDate()?.before(stringToDate(fin)) == true
+                    val isMinSalaryValid = minSalary == null || offre.remuneration?.compareTo(minSalary) ?: -1 >= 0
+                    val isMaxSalaryValid = maxSalary == null || offre.remuneration?.compareTo(maxSalary) ?: 1 <= 0
+
+
+                    isQuoiValid && isOuValid && isTypeValid && isDebValid && isFinValid && isMinSalaryValid && isMaxSalaryValid
+                }
+
+                offreAdapter.updateOffreList(filteredOffres)
+            }
+        }
+    }
+
+    private fun stringToDate(dateString: String): Date? {
+        if (dateString == "Début" || dateString == "Fin") {
+            return null
+        }
+        val format = SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE)
+        return format.parse(dateString)
     }
 }
 
