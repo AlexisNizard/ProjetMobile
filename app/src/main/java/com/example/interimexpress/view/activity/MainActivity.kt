@@ -18,9 +18,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.interimexpress.R
-import com.example.interimexpress.controller.CandidatController
-import com.example.interimexpress.controller.EmployeurController
-import com.example.interimexpress.controller.OffreController
+import com.example.interimexpress.controller.*
+import com.google.firebase.FirebaseApp
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -28,66 +27,103 @@ class MainActivity : AppCompatActivity() {
     private lateinit var offreController : OffreController
     private lateinit var candidatController: CandidatController
     private lateinit var employeurController: EmployeurController
+    private lateinit var postulerController: PostulerController
+    private lateinit var agenceController: AgenceController
     private val LOCATION_PERMISSION_REQUEST_CODE = 1
     private var latitude: Double = 0.0
     private var longitude: Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val sharedPreferences = getSharedPreferences("InterimExpress", Context.MODE_PRIVATE)
+        val userRole = sharedPreferences.getString("userRole", "")
+        if (userRole == "Candidat") {
+            val intent = Intent(this, RechercheOffresActivity::class.java)
+            startActivity(intent)
+            genDB()
+        } else if (userRole == "Employeur") {
+            val intent = Intent(this, EmployeurDashboardActivity::class.java)
+            startActivity(intent)
+            genDB()
+        }
+        else if (userRole == "Agence") {
+            val intent = Intent(this, AgenceDashboardActivity::class.java)
+            startActivity(intent)
+            genDB()
+        }
+        else {
+            setContentView(R.layout.activity_main)
 
+            genDB()
+
+            val btnConnecter = findViewById<Button>(R.id.login_button)
+            val btnRegister = findViewById<Button>(R.id.register_button)
+            val txtContinueAnonyme = findViewById<TextView>(R.id.continue_anonymously)
+
+            btnConnecter.setOnClickListener {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+            }
+
+            btnRegister.setOnClickListener {
+                val intent = Intent(this, ChoisirRoleActivity::class.java)
+                startActivity(intent)
+            }
+
+            txtContinueAnonyme.setOnClickListener {
+                val intent = Intent(this, RechercheOffresActivity::class.java)
+                startActivity(intent)
+            }
+
+            // Request location permission
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+            ) {
+                // Permission is not granted
+                if (!hasShownRationale()) {
+                    // Show an explanation to the user
+                    AlertDialog.Builder(this, R.style.CustomAlertDialogStyle)
+                        .setTitle("Permission de localisation nécessaire")
+                        .setMessage("Cette application a besoin de la permission de localisation pour afficher des recommandations d'offres adaptées à votre localisation.")
+                        .setPositiveButton("Accepter") { dialog, which ->
+                            setHasShownRationale()
+                            ActivityCompat.requestPermissions(
+                                this,
+                                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                                LOCATION_PERMISSION_REQUEST_CODE
+                            )
+                        }
+                        .setNegativeButton("Refuser") { dialog, which ->
+                            dialog.dismiss()
+                            setHasShownRationale()
+                        }
+                        .create().show()
+                } else {
+                    // No explanation needed; request the permission
+                    ActivityCompat.requestPermissions(
+                        this,
+                        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                        LOCATION_PERMISSION_REQUEST_CODE
+                    )
+                }
+            } else {
+                getLocation()
+            }
+        }
+    }
+
+    private fun genDB(){
         offreController = OffreController()
         candidatController = CandidatController()
         employeurController = EmployeurController()
+        postulerController = PostulerController()
+        agenceController = AgenceController()
 
         offreController.checkAndUpdateData()
         candidatController.checkAndUpdateData()
         employeurController.checkAndUpdateData()
-
-        val btnConnecter = findViewById<Button>(R.id.login_button)
-        val btnRegister = findViewById<Button>(R.id.register_button)
-        val txtContinueAnonyme = findViewById<TextView>(R.id.continue_anonymously)
-
-        btnConnecter.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }
-
-        btnRegister.setOnClickListener {
-            val intent = Intent(this, ChoisirRoleActivity::class.java)
-            startActivity(intent)
-        }
-
-        txtContinueAnonyme.setOnClickListener {
-            val intent = Intent(this, RechercheOffresActivity::class.java)
-            startActivity(intent)
-        }
-
-        // Request location permission
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED) {
-            // Permission is not granted
-            if (!hasShownRationale()) {
-                // Show an explanation to the user
-                AlertDialog.Builder(this, R.style.CustomAlertDialogStyle)
-                    .setTitle("Permission de localisation nécessaire")
-                    .setMessage("Cette application a besoin de la permission de localisation pour afficher des recommandations d'offres adaptées à votre localisation.")
-                    .setPositiveButton("Accepter") { dialog, which ->
-                        setHasShownRationale()
-                        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
-                    }
-                    .setNegativeButton("Refuser") { dialog, which ->
-                        dialog.dismiss()
-                        setHasShownRationale()
-                    }
-                    .create().show()
-            } else {
-                // No explanation needed; request the permission
-                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
-            }
-        } else {
-            getLocation()
-        }
+        postulerController.checkAndUpdateData()
+        agenceController.checkAndUpdateData()
     }
 
     private fun hasShownRationale(): Boolean {

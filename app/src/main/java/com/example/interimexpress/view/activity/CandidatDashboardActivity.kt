@@ -3,10 +3,17 @@ package com.example.interimexpress.view.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.interimexpress.R
+import com.example.interimexpress.controller.CandidatController
+import com.example.interimexpress.model.Candidat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class CandidatDashboardActivity : AppCompatActivity() {
 
@@ -18,6 +25,26 @@ class CandidatDashboardActivity : AppCompatActivity() {
 
         logout.setOnClickListener {
             logout()
+        }
+
+        val sharedPreferences = getSharedPreferences("InterimExpress", Context.MODE_PRIVATE)
+        val mail = sharedPreferences.getString("userMail", "") // récupérer l'email de l'utilisateur
+
+        // Obtenez une instance du CandidatController
+        val candidatController = CandidatController()
+
+        // Récupérez le document pour cet utilisateur
+        val candidatTask = candidatController.getCandidat(mail.toString())
+
+        candidatTask.addOnSuccessListener { document ->
+            if (document.exists()) {
+                val candidat = document.toObject(Candidat::class.java)
+
+                val nomComplet = "${candidat?.nom} ${candidat?.prenom}"
+                findViewById<TextView>(R.id.lenom).text = nomComplet
+                findViewById<TextView>(R.id.lemail).setText(candidat?.adresseMail)
+
+            }
         }
     }
 

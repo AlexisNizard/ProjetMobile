@@ -32,6 +32,13 @@
                 android:text="EMPLOYEUR TEST"
                 app:layout_constraintStart_toEndOf="@id/autoFillCandidat"
                 app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/autoFillAgence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AGENCE TEST"
+                app:layout_constraintStart_toEndOf="@id/autoFillEmployeur"
+                app:layout_constraintTop_toTopOf="parent" />
             <!--FIN DEBUGGING à supprimer à la fin du projet-->
 
 

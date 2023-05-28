@@ -3,6 +3,7 @@ package com.example.interimexpress.view.activity
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
@@ -13,7 +14,10 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.interimexpress.R
 import com.example.interimexpress.controller.CandidatController
+import com.example.interimexpress.controller.EmployeurController
 import com.example.interimexpress.controller.OffreController
+import com.example.interimexpress.model.Candidat
+import com.example.interimexpress.model.Employeur
 import com.example.interimexpress.model.Offre
 import com.google.firebase.Timestamp
 import retrofit2.Call
@@ -30,13 +34,13 @@ class CreerOffreEmploiActivity : AppCompatActivity() {
 
     private lateinit var offreController: OffreController
     private lateinit var titreOffreEditText: EditText
-    private lateinit var nomEntrepriseEditText: EditText
-    private lateinit var codePostalEditText: EditText
-    private lateinit var villeAutoComplete: AutoCompleteTextView
+    //private lateinit var nomEntrepriseEditText: EditText
+    //private lateinit var codePostalEditText: EditText
+    //private lateinit var villeAutoComplete: AutoCompleteTextView
     private lateinit var contratSpinner: Spinner
     private lateinit var remunerationEditText: EditText
-    private lateinit var dateDebutEditText: EditText
-    private lateinit var dateFinEditText: EditText
+    private lateinit var debEditText: Button
+    private lateinit var finEditText: Button
     private lateinit var descriptionEditText: EditText
     private lateinit var creerOffreButton: Button
 
@@ -46,21 +50,22 @@ class CreerOffreEmploiActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_creer_offre_emploi)
 
+
         offreController = OffreController()
 
         titreOffreEditText = findViewById(R.id.editTextTitreOffre)
-        nomEntrepriseEditText = findViewById(R.id.editTextNomEntreprise)
-        codePostalEditText = findViewById(R.id.editTextCodePostal)
-        villeAutoComplete = findViewById(R.id.autoCompleteVille)
+        //nomEntrepriseEditText = findViewById(R.id.editTextNomEntreprise)
+        //codePostalEditText = findViewById(R.id.editTextCodePostal)
+        //villeAutoComplete = findViewById(R.id.autoCompleteVille)
         descriptionEditText = findViewById(R.id.editTextDescription)
-        contratSpinner = findViewById(R.id.spinnerTypeContrat)
+        contratSpinner = findViewById(R.id.type_dropdown)
         remunerationEditText = findViewById(R.id.editTextRemuneration)
-        dateDebutEditText = findViewById(R.id.editTextDateDebut)
-        dateFinEditText = findViewById(R.id.editTextDateFin)
+        debEditText = findViewById(R.id.deb)
+        finEditText = findViewById(R.id.fin)
 
         creerOffreButton = findViewById(R.id.btn_creationOffre)
 
-        codePostalEditText.addTextChangedListener(object : TextWatcher {
+        /*codePostalEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
@@ -95,7 +100,7 @@ class CreerOffreEmploiActivity : AppCompatActivity() {
             }
 
             override fun afterTextChanged(s: Editable) {}
-        })
+        })*/
 
         //Pour TypeContrat*
         ArrayAdapter.createFromResource(
@@ -103,7 +108,7 @@ class CreerOffreEmploiActivity : AppCompatActivity() {
             R.array.contract_types,
             R.layout.spinner_remuneration
         ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            adapter.setDropDownViewResource(R.layout.spinner_dropdown_item2)
             contratSpinner.adapter = adapter
         }
 
@@ -125,36 +130,31 @@ class CreerOffreEmploiActivity : AppCompatActivity() {
             }
         })
 
-        //Pour DateDebut
-        val editTextStartDate: EditText = findViewById(R.id.editTextDateDebut)
-        editTextStartDate.setOnClickListener {
+
+
+        debEditText = findViewById(R.id.deb)
+        finEditText = findViewById(R.id.fin)
+
+        debEditText.setOnClickListener {
             val calendar = Calendar.getInstance()
             val year = calendar.get(Calendar.YEAR)
             val month = calendar.get(Calendar.MONTH)
             val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-            val dpd = DatePickerDialog(this, { _, year, monthOfYear, dayOfMonth ->
-                val selectedDate = String.format("%02d/%02d/%04d", dayOfMonth, monthOfYear + 1, year)
-                editTextStartDate.setText(selectedDate)
-            }, year, month, day)
-
-            dpd.show()
+            DatePickerDialog(this, { _, chosenYear, monthOfYear, dayOfMonth ->
+                debEditText.setText("$dayOfMonth/$monthOfYear/$chosenYear")
+            }, year, month, day).show()
         }
 
-        //Pour DateFin
-        val editTextEndDate: EditText = findViewById(R.id.editTextDateFin)
-        editTextEndDate.setOnClickListener {
+        finEditText.setOnClickListener {
             val calendar = Calendar.getInstance()
             val year = calendar.get(Calendar.YEAR)
             val month = calendar.get(Calendar.MONTH)
             val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-            val dpd = DatePickerDialog(this, { _, year, monthOfYear, dayOfMonth ->
-                val selectedDate = String.format("%02d/%02d/%04d", dayOfMonth, monthOfYear + 1, year)
-                editTextEndDate.setText(selectedDate)
-            }, year, month, day)
-
-            dpd.show()
+            DatePickerDialog(this, { _, chosenYear, monthOfYear, dayOfMonth ->
+                finEditText.setText("$dayOfMonth/$monthOfYear/$chosenYear")
+            }, year, month, day).show()
         }
 
         creerOffreButton.setOnClickListener {
@@ -166,36 +166,54 @@ class CreerOffreEmploiActivity : AppCompatActivity() {
 
     private fun registerOffre(){
         val titre = titreOffreEditText.text.toString()
-        val entreprise = nomEntrepriseEditText.text.toString()
+        /*val entreprise = nomEntrepriseEditText.text.toString()
         val adresse = codePostalEditText.text.toString()
-        val cp = villeAutoComplete.text.toString()
+        val cp = villeAutoComplete.text.toString()*/
         val description = descriptionEditText.text.toString()
         val contrat = contratSpinner.selectedItem.toString()
         val remunerationString = remunerationEditText.text.toString()
         val remuneration = if (remunerationString.isNullOrBlank()) null else remunerationString.toDouble()
         val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        val dateDebutString = dateDebutEditText.text.toString()
+        val dateDebutString = debEditText.text.toString()
         val dateDebut = if (dateDebutString.isNullOrBlank()) null else Timestamp(dateFormat.parse(dateDebutString))
-        val dateFinString = dateFinEditText.text.toString()
+        val dateFinString = finEditText.text.toString()
         val dateFin = if (dateFinString.isNullOrBlank()) null else Timestamp(dateFormat.parse(dateFinString))
 
-        val offre = Offre(
-            id = null, // L'id sera généré automatiquement par Firestore
-            titre = titre,
-            entreprise = entreprise,
-            adresse = adresse,
-            cp=cp,
-            mail = null,
-            typeContrat = contrat,
-            remuneration = remuneration,
-            dateDebut = dateDebut,
-            dateFin = dateFin,
-            description = description,
-            dateCreation = null,
-            nbrClick = 0
-        )
+        val sharedPreferences = getSharedPreferences("InterimExpress", Context.MODE_PRIVATE)
+        val mail = sharedPreferences.getString("userMail", "") // récupérer l'email de l'utilisateur
 
-        offreController.insertOffre(offre)
+        // Obtenez une instance du CandidatController
+        val employeurController = EmployeurController()
+
+        // Récupérez le document pour cet utilisateur
+        val empTask = employeurController.getEmployeur(mail.toString())
+
+        // Si la requête est réussie, utilisez les données pour remplir les champs de texte
+        empTask.addOnSuccessListener { document ->
+            if (document.exists()) {
+                val emp = document.toObject(Employeur::class.java)
+
+                val offre = Offre(
+                    id = null, // L'id sera généré automatiquement par Firestore
+                    titre = titre,
+                    entreprise = emp?.nomEntreprise,
+                    adresse = emp?.ville,
+                    cp=emp?.codePostal,
+                    mail = emp?.adresseMail,
+                    typeContrat = contrat,
+                    remuneration = remuneration,
+                    dateDebut = dateDebut,
+                    dateFin = dateFin,
+                    description = description,
+                    dateCreation = Timestamp(Date()),
+                    nbrClick = 0
+                )
+
+                offreController.insertOffre(offre)
+
+            }
+        }
+
     }
 }
 

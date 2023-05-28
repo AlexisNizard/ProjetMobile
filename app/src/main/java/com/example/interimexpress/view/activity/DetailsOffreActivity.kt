@@ -54,6 +54,7 @@ class DetailsOffreActivity : AppCompatActivity() {
         binding.rechercherButton.setOnClickListener {
             if (userRole == "Candidat") {
                 val intent = Intent(this, PostulerOffreActivity::class.java)
+                intent.putExtra("offre_id", id)
                 startActivity(intent)
             } else {
                 faire_apparaitre_co_inscr();

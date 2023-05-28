@@ -223,63 +223,38 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Date de naissance"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/editTextNom"
+                app:layout_constraintTop_toBottomOf="@+id/editTextPrenom"
                 app:layout_constraintStart_toStartOf="@id/guideline_recherche_verti"
                 android:layout_marginTop="34dp"
                 android:textColor="#0A3A9A" />
 
-            <RelativeLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/datePickerLayout"
-
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
+                android:gravity="center"
+                android:layout_marginTop="-11dp"
                 app:layout_constraintTop_toBottomOf="@+id/textViewDateNaissance"
                 app:layout_constraintStart_toStartOf="@id/guideline_recherche_verti"
-                app:layout_constraintEnd_toEndOf="@id/guideline_recherche_verti_fin">
+                app:layout_constraintEnd_toEndOf="@id/guideline_recherche_verti_fin"
+                android:textColorHint="#636363"
+                app:boxStrokeColor="#636363"
+                app:startIconDrawable="@drawable/baseline_cake_24"
+                app:startIconTint="#636363">
 
-                <ImageView
-                    android:id="@+id/calendarIcon"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/calendrier" />
-
-                <View
-                    android:id="@+id/horizontalLine"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextDate"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_toEndOf="@+id/calendarIcon"
-                    android:layout_alignParentBottom="true"
-                    android:background="#9E9E9E"
-                    />
-
-                <TextView
-                    android:id="@+id/hintText"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/calendarIcon"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="9dp"
-                    android:hint="@string/champBirthdate"
-                    android:textColorHint="#636363"
-                    android:textSize="16dp"
-                    />
-
-                <View
-                    android:id="@+id/dropdownArrow"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/arrow_down"
-                    />
-
-            </RelativeLayout>
+                    android:background="@drawable/background_edt"
+                    android:hint="JJ/MM/AAAA"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:textColor="#000000"
+                    android:padding="14dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/textViewNatio"
@@ -300,11 +275,15 @@
                 android:layout_height="54sp"
                 android:background="@drawable/background_edt"
                 android:padding="14sp"
+                android:textColor="#333333"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-medium"
                 android:hint="Choisissez une nationalité"
-                android:textColor="#0757F6"
                 app:layout_constraintTop_toBottomOf="@+id/textViewNatio"
                 app:layout_constraintStart_toStartOf="@id/guideline_recherche_verti"
                 app:layout_constraintEnd_toEndOf="@id/guideline_recherche_verti_fin" />
+
+
 
             <TextView
                 android:id="@+id/textViewCV"
@@ -318,13 +297,20 @@
                 app:layout_constraintStart_toStartOf="@id/guideline_recherche_verti"
                 android:layout_marginTop="24dp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/cvButton"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Déposer mon CV"
+                android:text=" CV"
                 android:textColor="#FFFFFF"
-                android:background="@drawable/background_edt"
+                android:padding="8dp"
+                android:textSize="15sp"
+                app:icon="@drawable/baseline_download_24"
+                style="@style/Widget.Material3.Button"
+                android:backgroundTint="@color/bblue"
+                app:iconPadding="0dp"
+                app:iconGravity="textStart"
+                android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/textViewCV"
                 app:layout_constraintStart_toStartOf="@id/guideline_recherche_verti"
                 app:layout_constraintEnd_toEndOf="@id/guideline_recherche_verti_fin" />
@@ -333,7 +319,7 @@
                 android:id="@+id/textViewLM"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lettre de motivation"
+                android:text="Lettre de motivation *"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="#0A3A9A"
@@ -341,13 +327,20 @@
                 app:layout_constraintStart_toStartOf="@id/guideline_recherche_verti"
                 android:layout_marginTop="24dp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/lmButton"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Déposer ma lettre de motivation"
+                android:text=" LM"
+                android:textSize="15sp"
+                style="@style/Widget.Material3.Button"
                 android:textColor="#FFFFFF"
-                android:background="@drawable/background_edt"
+                android:padding="8dp"
+                app:icon="@drawable/baseline_download_24"
+                android:backgroundTint="@color/bblue"
+                app:iconPadding="0dp"
+                app:iconGravity="textStart"
+                android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/textViewLM"
                 app:layout_constraintStart_toStartOf="@id/guideline_recherche_verti"
                 app:layout_constraintEnd_toEndOf="@id/guideline_recherche_verti_fin" />
@@ -367,7 +360,7 @@
                 android:padding="5dp"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:layout_marginTop="42dp"
+                android:layout_marginTop="28dp"
                 android:layout_marginBottom="24dp"
                 app:layout_constraintEnd_toEndOf="@id/guideline_recherche_verti_fin"
                 app:layout_constraintStart_toStartOf="@id/guideline_recherche_verti"

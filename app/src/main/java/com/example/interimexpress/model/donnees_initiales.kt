@@ -1,16 +1,425 @@
 package com.example.interimexpress.model
 
+import android.net.Uri
 import com.google.firebase.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
 
 object InitialData {
 
-    const val VERSION = 20
+    const val VERSION = 35
 
     private val sdf = SimpleDateFormat("dd/MM/yyyy")
     private val date = sdf.parse("01/02/2022")
     private val timestamp = Timestamp(date)
+
+
+    val employeurs = listOf(
+        Employeur(
+            adresseMail = "contact1@entrepriseA.com",
+            nomEntreprise = "Entreprise A",
+            nomService = "Service A1",
+            nomSousService = "Sous-Service A1.1",
+            numeroSiret = "12345678901234",
+            nomContact1 = "Smith",
+            prenomContact1 = "John",
+            nomContact2 = "Doe",
+            prenomContact2 = "Jane",
+            adresseMail2 = "contact2@entrepriseA.com",
+            motDePasse = "password123",
+            role = "Employeur",
+            numTelephone1 = "+1234567890",
+            numTelephone2 = "+0987654321",
+            adresse = "123 Rue de l'Exemple",
+            codePostal = "75000",
+            ville = "Paris",
+            lienSiteWeb = "www.entrepriseA.com",
+            lienLinkedin = "www.linkedin.com/in/entrepriseA",
+            lienFacebook = "www.facebook.com/entrepriseA"
+        ),Employeur(
+            adresseMail = "contact1@entrepriseB.com",
+            nomEntreprise = "Entreprise B",
+            nomService = null,
+            nomSousService = "Sous-Service B1.1",
+            numeroSiret = "23456789012345",
+            nomContact1 = "Johnson",
+            prenomContact1 = "Robert",
+            nomContact2 = "Davies",
+            prenomContact2 = "Emily",
+            adresseMail2 = null,
+            motDePasse = "password456",
+            role = "Employeur",
+            numTelephone1 = "+2345678901",
+            numTelephone2 = null,
+            adresse = "456 Avenue de l'Exemple",
+            codePostal = "69000",
+            ville = "Lyon",
+            lienSiteWeb = null,
+            lienLinkedin = "www.linkedin.com/in/entrepriseB",
+            lienFacebook = null
+        ),Employeur(
+            adresseMail = "contact1@entrepriseC.com",
+            nomEntreprise = "Entreprise C",
+            nomService = null,
+            nomSousService = null,
+            numeroSiret = "34567890123456",
+            nomContact1 = "Anderson",
+            prenomContact1 = "Michael",
+            nomContact2 = null,
+            prenomContact2 = null,
+            adresseMail2 = null,
+            motDePasse = "password789",
+            role = "Employeur",
+            numTelephone1 = "+3456789012",
+            numTelephone2 = null,
+            adresse = "789 Boulevard de l'Exemple",
+            codePostal = "31000",
+            ville = "Toulouse",
+            lienSiteWeb = "www.entrepriseC.com",
+            lienLinkedin = null,
+            lienFacebook = null
+        )
+
+        ,Employeur(
+            adresseMail = "contact1@entrepriseD.com",
+            nomEntreprise = "Entreprise D",
+            nomService = "Service D1",
+            nomSousService = null,
+            numeroSiret = "45678901234567",
+            nomContact1 = null,
+            prenomContact1 = null,
+            nomContact2 = null,
+            prenomContact2 = null,
+            adresseMail2 = null,
+            motDePasse = "password012",
+            role = "Employeur",
+            numTelephone1 = null,
+            numTelephone2 = null,
+            adresse = "987 Rue de l'Exemple",
+            codePostal = "44000",
+            ville = "Nantes",
+            lienSiteWeb = "www.entrepriseD.com",
+            lienLinkedin = null,
+            lienFacebook = null
+        )
+
+        ,Employeur(
+            adresseMail = "contact1@entrepriseE.com",
+            nomEntreprise = "Entreprise E",
+            nomService = "Service E1",
+            nomSousService = null,
+            numeroSiret = "56789012345678",
+            nomContact1 = "Brown",
+            prenomContact1 = "David",
+            nomContact2 = null,
+            prenomContact2 = null,
+            adresseMail2 = null,
+            motDePasse = "password345",
+            role = "Employeur",
+            numTelephone1 = "+5678901234",
+            numTelephone2 = null,
+            adresse = "654 Chemin de l'Exemple",
+            codePostal = "69001",
+            ville = "Lyon",
+            lienSiteWeb = null,
+            lienLinkedin = null,
+            lienFacebook = "www.facebook.com/entrepriseE"
+        )
+
+        ,Employeur(
+            adresseMail = "contact1@entrepriseF.com",
+            nomEntreprise = "Entreprise F",
+            nomService = "Service F1",
+            nomSousService = "Sous-Service F1.1",
+            numeroSiret = "67890123456789",
+            nomContact1 = null,
+            prenomContact1 = null,
+            nomContact2 = "Wilson",
+            prenomContact2 = "Sarah",
+            adresseMail2 = null,
+            motDePasse = "password678",
+            role = "Employeur",
+            numTelephone1 = null,
+            numTelephone2 = "+6789012345",
+            adresse = "987 Avenue de l'Exemple",
+            codePostal = "35000",
+            ville = "Rennes",
+            lienSiteWeb = "www.entrepriseF.com",
+            lienLinkedin = null,
+            lienFacebook = null
+        )
+
+        ,Employeur(
+            adresseMail = "contact1@entrepriseG.com",
+            nomEntreprise = "Entreprise G",
+            nomService = null,
+            nomSousService = null,
+            numeroSiret = "78901234567890",
+            nomContact1 = "Taylor",
+            prenomContact1 = "Daniel",
+            nomContact2 = null,
+            prenomContact2 = null,
+            adresseMail2 = null,
+            motDePasse = "password901",
+            role = "Employeur",
+            numTelephone1 = "+7890123456",
+            numTelephone2 = null,
+            adresse = "321 Rue de l'Exemple",
+            codePostal = "67000",
+            ville = "Strasbourg",
+            lienSiteWeb = null,
+            lienLinkedin = "www.linkedin.com/in/entrepriseG",
+            lienFacebook = null
+        )
+
+        ,Employeur(
+            adresseMail = "contact1@entrepriseH.com",
+            nomEntreprise = "Entreprise H",
+            nomService = "Service H1",
+            nomSousService = "Sous-Service H1.1",
+            numeroSiret = "89012345678901",
+            nomContact1 = "Walker",
+            prenomContact1 = "Jennifer",
+            nomContact2 = "Lewis",
+            prenomContact2 = "Michael",
+            adresseMail2 = null,
+            motDePasse = "password234",
+            role = "Employeur",
+            numTelephone1 = "+8901234567",
+            numTelephone2 = "+8901234567",
+            adresse = "456 Boulevard de l'Exemple",
+            codePostal = "59000",
+            ville = "Lille",
+            lienSiteWeb = "www.entrepriseH.com",
+            lienLinkedin = "www.linkedin.com/in/entrepriseH",
+            lienFacebook = "www.facebook.com/entrepriseH"
+        )
+
+        ,Employeur(
+            adresseMail = "contact1@entrepriseI.com",
+            nomEntreprise = "Entreprise I",
+            nomService = "Service I1",
+            nomSousService = null,
+            numeroSiret = "90123456789012",
+            nomContact1 = "Clark",
+            prenomContact1 = "William",
+            nomContact2 = null,
+            prenomContact2 = null,
+            adresseMail2 = "contact2@entrepriseI.com",
+            motDePasse = "password567",
+            role = "Employeur",
+            numTelephone1 = "+9012345678",
+            numTelephone2 = null,
+            adresse = "789 Chemin de l'Exemple",
+            codePostal = "34000",
+            ville = "Montpellier",
+            lienSiteWeb = null,
+            lienLinkedin = null,
+            lienFacebook = null
+        )
+
+        ,Employeur(
+            adresseMail = "contact1@entrepriseJ.com",
+            nomEntreprise = "Entreprise J",
+            nomService = null,
+            nomSousService = null,
+            numeroSiret = "01234567890123",
+            nomContact1 = "Allen",
+            prenomContact1 = "Jessica",
+            nomContact2 = null,
+            prenomContact2 = null,
+            adresseMail2 = null,
+            motDePasse = "password890",
+            role = "Employeur",
+            numTelephone1 = "+0123456789",
+            numTelephone2 = null,
+            adresse = "987 Avenue de l'Exemple",
+            codePostal = "13000",
+            ville = "Marseille",
+            lienSiteWeb = null,
+            lienLinkedin = "www.linkedin.com/in/entrepriseJ",
+            lienFacebook = null
+        )
+
+        ,Employeur(
+            adresseMail = "contact1@entrepriseK.com",
+            nomEntreprise = "Entreprise K",
+            nomService = "Service K1",
+            nomSousService = "Sous-Service K1.1",
+            numeroSiret = "12345678901234",
+            nomContact1 = "Green",
+            prenomContact1 = "Oliver",
+            nomContact2 = "Moore",
+            prenomContact2 = "Emma",
+            adresseMail2 = "contact2@entrepriseK.com",
+            motDePasse = "password123",
+            role = "Employeur",
+            numTelephone1 = "+1234567890",
+            numTelephone2 = "+0987654321",
+            adresse = "123 Rue de l'Exemple",
+            codePostal = "75000",
+            ville = "Paris",
+            lienSiteWeb = "www.entrepriseK.com",
+            lienLinkedin = "www.linkedin.com/in/entrepriseK",
+            lienFacebook = "www.facebook.com/entrepriseK"
+        )
+
+        ,Employeur(
+            adresseMail = "contact1@entrepriseL.com",
+            nomEntreprise = "Entreprise L",
+            nomService = null,
+            nomSousService = null,
+            numeroSiret = "23456789012345",
+            nomContact1 = "Wilson",
+            prenomContact1 = "Sarah",
+            nomContact2 = "Smith",
+            prenomContact2 = "John",
+            adresseMail2 = null,
+            motDePasse = "password123",
+            role = "Employeur",
+            numTelephone1 = "+2345678901",
+            numTelephone2 = "+0987654321",
+            adresse = "456 Avenue de l'Exemple",
+            codePostal = "69000",
+            ville = "Lyon",
+            lienSiteWeb = null,
+            lienLinkedin = "www.linkedin.com/in/entrepriseL",
+            lienFacebook = null
+        )
+        ,Employeur(
+            adresseMail = "contact1@entrepriseH.com",
+            nomEntreprise = "Entreprise M",
+            nomService = "Service M1",
+            nomSousService = null,
+            numeroSiret = "34567890123456",
+            nomContact1 = "Davis",
+            prenomContact1 = "Emma",
+            nomContact2 = null,
+            prenomContact2 = null,
+            adresseMail2 = null,
+            motDePasse = "password456",
+            role = "Employeur",
+            numTelephone1 = null,
+            numTelephone2 = null,
+            adresse = "789 Boulevard de l'Exemple",
+            codePostal = "31000",
+            ville = "Toulouse",
+            lienSiteWeb = null,
+            lienLinkedin = "www.linkedin.com/in/entrepriseM",
+            lienFacebook = null
+        )
+    )
+
+    val candidats = listOf(
+        Candidat(
+            adresseMail = "john.doe@example.com",
+            nom = "John",
+            prenom = "Doe",
+            motDePasse = "password123",
+            role = "Candidat",
+            nationalite = "France",
+            numTelephone = "+1234567890",
+            dateNaissance = "01-01-1990"
+        ),Candidat(
+            adresseMail = "emma.wilson@example.com",
+            nom = "Wilson",
+            prenom = "Emma",
+            motDePasse = "password456",
+            role = "Candidat",
+            nationalite = "France",
+            numTelephone = "+2345678901",
+            dateNaissance = "02-02-1995"
+        ),Candidat(
+            adresseMail = "michael.anderson@example.com",
+            nom = "Anderson",
+            prenom = "Michael",
+            motDePasse = "password789",
+            role = "Candidat",
+            nationalite = "Finland",
+            numTelephone = "+3456789012",
+            dateNaissance = "03-03-1992"
+        )
+        ,Candidat(
+            adresseMail = "olivia.thomas@example.com",
+            nom = "Thomas",
+            prenom = "Olivia",
+            motDePasse = "password012",
+            role = "Candidat",
+            nationalite = "Guadeloupe",
+            numTelephone = "+4567890123",
+            dateNaissance = "04-04-1988"
+        )
+        ,Candidat(
+            adresseMail = "liam.johnson@example.com",
+            nom = "Johnson",
+            prenom = "Liam",
+            motDePasse = "password345",
+            role = "Candidat",
+            nationalite = "Ireland",
+            numTelephone = "+5678901234",
+            dateNaissance = "05-05-1993"
+        )
+        ,Candidat(
+            adresseMail = "sophia.martin@example.com",
+            nom = "Martin",
+            prenom = "Sophia",
+            motDePasse = "password678",
+            role = "Candidat",
+            nationalite = "Luxembourg",
+            numTelephone = "+6789012345",
+            dateNaissance = "06-06-1990"
+        )
+        ,Candidat(
+            adresseMail = "daniel.brown@example.com",
+            nom = "Brown",
+            prenom = "Daniel",
+            motDePasse = "password901",
+            role = "Candidat",
+            nationalite = "Mozambique",
+            numTelephone = "+7890123456",
+            dateNaissance = "07-07-1996"
+        )
+        ,Candidat(
+            adresseMail = "mia.lewis@example.com",
+            nom = "Lewis",
+            prenom = "Mia",
+            motDePasse = "password234",
+            role = "Candidat",
+            nationalite = "Panama",
+            numTelephone = "+8901234567",
+            dateNaissance = "08-08-1991"
+        )
+        ,Candidat(
+            adresseMail = "noah.clark@example.com",
+            nom = "Clark",
+            prenom = "Noah",
+            motDePasse = "password567",
+            role = "Candidat",
+            nationalite = "Somalia",
+            numTelephone = "+9012345678",
+            dateNaissance = "09-09-1987"
+        )
+        ,Candidat(
+            adresseMail = "amelia.harris@example.com",
+            nom = "Harris",
+            prenom = "Amelia",
+            motDePasse = "password890",
+            role = "Candidat",
+            nationalite = "Tunisia",
+            numTelephone = "+0123456789",
+            dateNaissance = "10-10-1994"
+        )
+        ,Candidat(
+            adresseMail = "logan.green@example.com",
+            nom = "Green",
+            prenom = "Logan",
+            motDePasse = "password123",
+            role = "Candidat",
+            nationalite = "Tunisia",
+            numTelephone = "+1234567890",
+            dateNaissance = "11-11-1999"
+        )
+    )
 
     val offres = listOf(
         Offre(
@@ -19,7 +428,7 @@ object InitialData {
             entreprise = "Microsoft",
             adresse = "Paris",
             cp ="75000",
-            mail = "exemple@entreprise.com",
+            mail = "contact1@entrepriseA.com",
             typeContrat = "STAGE",
             remuneration = 2500.0,
             dateDebut = Timestamp(sdf.parse("01/09/2023")),
@@ -65,7 +474,7 @@ object InitialData {
             entreprise = "L'Oréal",
             adresse = "Lyon",
             cp ="69000",
-            mail = "exemple@entreprise.com",
+            mail =  "contact1@entrepriseB.com",
             typeContrat = "STAGE",
             remuneration = 2000.0,
             dateDebut = Timestamp(sdf.parse("01/08/2023")),
@@ -112,7 +521,7 @@ object InitialData {
             entreprise = "LVMH",
             adresse = "Paris",
             cp ="75000",
-            mail = "exemple@entreprise.com",
+            mail = "contact1@entrepriseC.com",
             typeContrat = "ALTERNANCE",
             remuneration = 1500.0,
             dateDebut = Timestamp(sdf.parse("01/09/2023")),
@@ -159,7 +568,7 @@ object InitialData {
             entreprise = "Airbus",
             adresse = "Marseille",
             cp ="13000",
-            mail = "exemple@entreprise.com",
+            mail = "contact1@entrepriseD.com",
             typeContrat = "CDI",
             remuneration = 5000.0,
             dateDebut = Timestamp(sdf.parse("01/08/2023")),
@@ -206,7 +615,7 @@ object InitialData {
             entreprise = "Airbus",
             adresse = "Toulouse",
             cp ="31000",
-            mail = "exemple@entreprise.com",
+            mail =  "contact1@entrepriseE.com",
             typeContrat = "ALTERNANCE",
             remuneration = 2000.0,
             dateDebut = Timestamp(sdf.parse("01/09/2023")),
@@ -253,7 +662,7 @@ object InitialData {
             entreprise = "Google",
             adresse = "Paris",
             cp ="75000",
-            mail = "exemple@entreprise.com",
+            mail = "contact1@entrepriseF.com",
             typeContrat = "ALTERNANCE",
             remuneration = 2500.0,
             dateDebut = Timestamp(sdf.parse("01/09/2023")),
@@ -300,7 +709,7 @@ object InitialData {
             entreprise = "Amazon",
             adresse = "Lyon",
             cp ="69000",
-            mail = "exemple@entreprise.com",
+            mail =  "contact1@entrepriseG.com",
             typeContrat = "CDD",
             remuneration = 3000.0,
             dateDebut = Timestamp(sdf.parse("01/07/2023")),
@@ -347,7 +756,7 @@ object InitialData {
             entreprise = "Facebook",
             adresse = "Paris",
             cp ="75000",
-            mail = "exemple@entreprise.com",
+            mail =  "contact1@entrepriseH.com",
             typeContrat = "CDI",
             remuneration = 4500.0,
             dateDebut = Timestamp(sdf.parse("01/09/2023")),
@@ -385,7 +794,7 @@ object InitialData {
             entreprise = "BNP Paribas",
             adresse = "Lyon",
             cp ="69000",
-            mail = "exemple@entreprise.com",
+            mail =  "contact1@entrepriseA.com",
             typeContrat = "CDD",
             remuneration = 3500.0,
             dateDebut = Timestamp(sdf.parse("01/10/2023")),
@@ -423,7 +832,7 @@ object InitialData {
             entreprise = "L'Oréal",
             adresse = "Bordeaux",
             cp ="33000",
-            mail = "exemple@entreprise.com",
+            mail = "contact1@entrepriseA.com",
             typeContrat = "ALTERNANCE",
             remuneration = 2000.0,
             dateDebut = Timestamp(sdf.parse("01/09/2023")),
@@ -460,7 +869,7 @@ object InitialData {
             entreprise = "Apple",
             adresse = "Lyon",
             cp ="69000",
-            mail = "exemple@entreprise.com",
+            mail =  "contact1@entrepriseA.com",
             typeContrat = "STAGE",
             remuneration = 1200.0,
             dateDebut = Timestamp(sdf.parse("01/09/2023")),
@@ -497,7 +906,7 @@ object InitialData {
             entreprise = "Procter & Gamble",
             adresse = "Paris",
             cp ="75000",
-            mail = "exemple@entreprise.com",
+            mail =  "contact1@entrepriseB.com",
             typeContrat = "STAGE",
             remuneration = 1000.0,
             dateDebut = Timestamp(sdf.parse("01/10/2023")),
@@ -534,7 +943,7 @@ object InitialData {
             entreprise = "Danone",
             adresse = "Bordeaux",
             cp ="33000",
-            mail = "exemple@entreprise.com",
+            mail =  "contact1@entrepriseC.com",
             typeContrat = "STAGE",
             remuneration = 900.0,
             dateDebut = Timestamp(sdf.parse("01/09/2023")),
@@ -571,7 +980,7 @@ object InitialData {
             entreprise = "Microsoft",
             adresse = "Toulouse",
             cp ="31000",
-            mail = "exemple@entreprise.com",
+            mail = "contact1@entrepriseD.com",
             typeContrat = "CDI",
             remuneration = 5000.0,
             dateDebut = Timestamp(sdf.parse("01/09/2023")),
@@ -586,7 +995,7 @@ object InitialData {
             entreprise = "Coca-Cola",
             adresse = "Paris",
             cp ="75000",
-            mail = "exemple@entreprise.com",
+            mail =  "contact1@entrepriseE.com",
             typeContrat = "CDI",
             remuneration = 4500.0,
             dateDebut = Timestamp(sdf.parse("01/10/2023")),
@@ -601,7 +1010,7 @@ object InitialData {
             entreprise = "KPMG",
             adresse = "Lyon",
             cp ="69000",
-            mail = "exemple@entreprise.com",
+            mail =  "contact1@entrepriseF.com",
             typeContrat = "CDI",
             remuneration = 4000.0,
             dateDebut = Timestamp(sdf.parse("01/09/2023")),
@@ -616,7 +1025,7 @@ object InitialData {
             entreprise = "Total",
             adresse = "Lyon",
             cp ="69000",
-            mail = "exemple@entreprise.com",
+            mail =  "contact1@entrepriseG.com",
             typeContrat = "CDD",
             remuneration = 3000.0,
             dateDebut = Timestamp(sdf.parse("01/09/2023")),
@@ -651,7 +1060,7 @@ object InitialData {
             entreprise = "Airbnb",
             adresse = "Paris",
             cp ="75000",
-            mail = "exemple@entreprise.com",
+            mail =  "contact1@entrepriseH.com",
             typeContrat = "CDD",
             remuneration = 2500.0,
             dateDebut = Timestamp(sdf.parse("01/10/2023")),
@@ -686,7 +1095,7 @@ object InitialData {
             entreprise = "Amazon",
             adresse = "Bordeaux",
             cp ="33000",
-            mail = "exemple@entreprise.com",
+            mail =  "contact1@entrepriseI.com",
             typeContrat = "CDD",
             remuneration = 2800.0,
             dateDebut = Timestamp(sdf.parse("01/09/2023")),
@@ -717,42 +1126,47 @@ object InitialData {
         )
     )
 
-    val candidats = listOf(
-        Candidat(
-            adresseMail = "john.doe@example.com",
+    val postulers = listOf(
+        Postuler(
+            id = "1",
+            userId = "john.doe@example.com",
+            employerId = "contact1@entrepriseA.com",
+            offerId = "BtX6NKS2T0mv690wtxyD", //a update
             nom = "John",
             prenom = "Doe",
-            motDePasse = "password123",
-            role = "Candidat",
+            dateNaissance = "01-01-1990",
             nationalite = "Américain",
-            numTelephone = "+1234567890",
-            dateNaissance = "01-01-1990"
+            cv = "https://firebasestorage.googleapis.com/v0/b/interimexpress-814be.appspot.com/o/CV1.pdf?alt=media&token=0006defd-befb-4a44-a77d-6d454149d9ff",
+            lm = "https://firebasestorage.googleapis.com/v0/b/interimexpress-814be.appspot.com/o/LM1.pdf?alt=media&token=4c622ef7-9c1e-4e82-a4b7-07c4262a7d77"
         )
     )
 
-    val employeurs = listOf(
-        Employeur(
-            adresseMail = "contact1@entrepriseA.com",
-            nomEntreprise = "Entreprise A",
-            nomService = "Service A1",
-            nomSousService = "Sous-Service A1.1",
+    val agences = listOf(
+        Agence(
+            adresseMail = "contact1@entrepriseB.com",
+            nomAgence = "Entreprise B",
+            nomService = "Service B1",
+            nomSousService = "Sous-Service B1.1",
             numeroSiret = "12345678901234",
-            nomContact1 = "Smith",
-            prenomContact1 = "John",
-            nomContact2 = "Doe",
-            prenomContact2 = "Jane",
-            adresseMail2 = "contact2@entrepriseA.com",
+            nomContact1 = "White",
+            prenomContact1 = "Derrick",
+            nomContact2 = "Tatum",
+            prenomContact2 = "Jayson",
+            adresseMail2 = "contact2@entrepriseB.com",
             motDePasse = "password123",
-            role = "Employeur",
+            role = "Agence",
             numTelephone1 = "+1234567890",
             numTelephone2 = "+0987654321",
             adresse = "123 Rue de l'Exemple",
             codePostal = "75000",
             ville = "Paris",
-            lienSiteWeb = "www.entrepriseA.com",
-            lienLinkedin = "www.linkedin.com/in/entrepriseA",
-            lienFacebook = "www.facebook.com/entrepriseA"
+            lienSiteWeb = "www.entrepriseB.com",
+            lienLinkedin = "www.linkedin.com/in/entrepriseB",
+            lienFacebook = "www.facebook.com/entrepriseB"
         )
     )
+
+
+
 
 }

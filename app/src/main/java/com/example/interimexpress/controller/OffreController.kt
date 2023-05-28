@@ -31,6 +31,11 @@ class OffreController {
         return offresCollection.whereEqualTo("adresse", city).get()
     }
 
+    fun getOffresByOwner(mail: String): Task<QuerySnapshot> {
+        return offresCollection.whereEqualTo("mail", mail).get()
+    }
+
+
     fun getAllOffres(): Task<QuerySnapshot> {
         return offresCollection.get()
     }

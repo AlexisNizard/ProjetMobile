@@ -56,4 +56,6 @@ dependencies {
     implementation 'me.grantland:autofittextview:0.2.1'
     implementation 'com.google.android.gms:play-services-location:18.0.0'
     implementation 'com.alimuzaffar.lib:pinentryedittext:2.0.6'
+    implementation 'com.google.firebase:firebase-storage:20.0.0'
+
 }

@@ -78,6 +78,45 @@
                 app:srcCompat="@drawable/profil" />
 
 
+            <ImageView
+                android:id="@+id/settings_icon"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="75dp"
+                app:layout_constraintEnd_toEndOf="@+id/logo"
+                app:layout_constraintStart_toStartOf="@+id/logo"
+                app:layout_constraintTop_toTopOf="@+id/logo"
+                app:srcCompat="@drawable/settings_circle" />
+
+
+
+            <TextView
+                android:id="@+id/lenom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="115dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="18dp"/>
+
+
+            <TextView
+                android:id="@+id/lemail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/lenom"
+                app:layout_constraintStart_toEndOf="@id/imageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="2dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="16dp"/>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_carte"
                 android:layout_width="0dp"
@@ -320,7 +359,7 @@
                     android:id="@+id/text4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="--------"
+                    android:text="Mon historique"
                     android:textAlignment="center"
                     android:textSize="18sp"
                     android:layout_marginTop="22dp"

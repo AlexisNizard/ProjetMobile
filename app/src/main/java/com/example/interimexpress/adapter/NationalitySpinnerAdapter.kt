@@ -20,7 +20,7 @@ class NationalitySpinnerAdapter(context: Context, private val nationalities: Arr
     }
 
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.spinner_dropdown_item, parent, false)
+        val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.spinner_dropdown_item2, parent, false)
         val nationalityText = view.findViewById<TextView>(R.id.nationality_text)
         nationalityText.text = nationalities[position]
         return view
