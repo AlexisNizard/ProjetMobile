@@ -1,4 +1,4 @@
-# ProjetMobile
+# ProjetMobile : InterimExpress
 ## Introduction
 
 Ce projet consiste à développer une application mobile pour la gestion des offres et des candidatures pour le travail en intérim. L'objectif principal est de fournir une plateforme efficace et intuitive pour les candidats, employeurs et agences, facilitant ainsi la recherche d'offres d'emploi temporaire et la gestion de candidatures.
