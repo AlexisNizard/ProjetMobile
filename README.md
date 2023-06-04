@@ -7,3 +7,8 @@ Ce projet consiste à développer une application mobile pour la gestion des off
 L'application est développée en utilisant le langage de programmation Kotlin, avec Android Studio comme environnement de développement.
 
 En ce qui concerne la gestion des données, nous avons opté pour Firebase Cloud Firestore.
+
+## Membres
+* Nizard Alexis
+* Grimaud Matthieu
+* Papin Adrien
