@@ -19,14 +19,6 @@
             android:layout_height="wrap_content">
 
 
-            <Button
-                android:id="@+id/skip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Skip"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/banner"
         android:layout_width="0dp"
@@ -87,12 +79,49 @@
         android:maxLength="5"
         android:textIsSelectable="false"
         android:textSize="20dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
         app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Valider"
+                android:background="@drawable/blue_btn_background"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                tools:ignore="VisualLintButtonSize"
+                style="@android:style/Widget.Button"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:layout_marginTop="22dp"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/et_otp"
+                android:textSize="20sp"/>
+
+
+            <TextView
+                android:id="@+id/nouveauCode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Renvoyez un nouveau code"
+                android:textAlignment="center"
+                android:textSize="13dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/submit"
+                android:textColor="#757677"
+                android:textStyle="bold" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

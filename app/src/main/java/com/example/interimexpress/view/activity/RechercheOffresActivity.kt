@@ -17,8 +17,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.interimexpress.R
 import com.example.interimexpress.adapter.GeocodingUtils
 import com.example.interimexpress.adapter.OffreAdapter
+import com.example.interimexpress.controller.CandidatController
 import com.example.interimexpress.controller.OffreController
+import com.example.interimexpress.controller.PostulerController
+import com.example.interimexpress.model.Candidat
 import com.example.interimexpress.model.Offre
+import com.example.interimexpress.view.fragment.FooterCandidatFragment
 import com.google.android.material.slider.RangeSlider
 import com.google.firebase.Timestamp
 import java.text.SimpleDateFormat
@@ -36,6 +40,7 @@ class RechercheOffresActivity : AppCompatActivity() {
     private lateinit var finEditText: Button
     private lateinit var settings_: ImageView
     private lateinit var rechercher_button : Button
+    private val postulerController = PostulerController()
 
     private var bool_c = 1
 
@@ -45,9 +50,34 @@ class RechercheOffresActivity : AppCompatActivity() {
 
         val sharedPreferences = getSharedPreferences("InterimExpress", Context.MODE_PRIVATE)
         val userRole = sharedPreferences.getString("userRole", "")
+        val mail = sharedPreferences.getString("userMail", "")
+
+
+
+
         //println(userRole)
         if (userRole == "Candidat") {
+            val candidatController = CandidatController()
 
+            val candidatTask = candidatController.getCandidat(mail.toString())
+
+
+            candidatTask.addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val candidat = document.toObject(Candidat::class.java)
+
+                    val empTask2 = postulerController.getUntreatedPostulerByCandidatId(candidat?.adresseMail.toString())
+                    empTask2.addOnSuccessListener { document ->
+                        val footerFragment = supportFragmentManager.findFragmentById(R.id.footerFragment) as? FooterCandidatFragment
+                        if (document.size()!=0) {
+                            footerFragment?.setNotificationIconActive(true)
+                        }
+                        else{
+                            footerFragment?.setNotificationIconActive(false)
+                        }
+                    }
+                }
+            }
         } else {
             masquer_vue_anonyme();
         }
@@ -161,6 +191,25 @@ class RechercheOffresActivity : AppCompatActivity() {
                 searchOffres()
         }
 
+        val metier = intent.getStringExtra("metier")
+        val employeur = intent.getStringExtra("employeur")
+        val periodeDebut = intent.getLongExtra("periodeDebut", 0)
+        val periodeFin = intent.getLongExtra("periodeFin", 0)
+        val lieu = intent.getStringExtra("lieu")
+
+        println("TOUT LES ARGS : $metier $employeur $periodeDebut $periodeFin $lieu")
+
+        if (metier != null || employeur != null || lieu != null || (periodeDebut != 0L && periodeFin != 0L)) {
+            offreController.getFilteredOffres(metier, employeur, periodeDebut, periodeFin, lieu).addOnSuccessListener { documents ->
+                if (documents != null) {
+                    val offres = documents.toObjects(Offre::class.java)
+                    offreAdapter.updateOffreList(offres)
+                }
+            }
+        }
+
+
+
 
     }
 
@@ -240,12 +289,5 @@ class RechercheOffresActivity : AppCompatActivity() {
     }
 
 
-    override fun onResume() {
-        super.onResume()
-        val fragment = supportFragmentManager.findFragmentById(R.id.footerFragment)
-        if (fragment != null && fragment.isAdded()) {
-            CandidatDashboardActivity.Utility.updateNotificationIcon(this, fragment)
-        }
-    }
 }
 

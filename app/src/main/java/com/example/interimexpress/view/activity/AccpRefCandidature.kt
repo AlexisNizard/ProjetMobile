@@ -13,9 +13,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.FileProvider
 import com.example.interimexpress.R
 import com.example.interimexpress.controller.PostulerController
 import com.example.interimexpress.model.Postuler
+import com.google.android.material.button.MaterialButton
 import okhttp3.*
 import java.io.File
 import java.io.FileOutputStream
@@ -60,15 +62,16 @@ class AccpRefCandidature : AppCompatActivity() {
         ActivityCompat.requestPermissions(this, permissions,0)
 
 
-        val cvButton = findViewById<Button>(R.id.cv_c)
+        val cvButton = findViewById<MaterialButton>(R.id.cv_c)
         cvButton.setOnClickListener {
-            postuler?.let { it.cv?.let { it1 -> downloadFile(it1, "cv.pdf") } }
+            postuler?.let { it.cv?.let { it1 -> downloadFile(it1, "cv.pdf", cvButton) } }
         }
 
-        val lmButton = findViewById<Button>(R.id.lm_c)
+        val lmButton = findViewById<MaterialButton>(R.id.lm_c)
         lmButton.setOnClickListener {
-            postuler?.let { it.lm?.let { it1 -> downloadFile(it1, "lm.pdf") } }
+            postuler?.let { it.lm?.let { it1 -> downloadFile(it1, "lm.pdf", lmButton) } }
         }
+
 
 
         val btnAc = findViewById<Button>(R.id.btn_acc)
@@ -130,8 +133,7 @@ class AccpRefCandidature : AppCompatActivity() {
     }
 
 
-
-    fun downloadFile(url: String, filename: String) {
+    fun downloadFile(url: String, filename: String, button: MaterialButton) {
         val request = Request.Builder().url(url).build()
         OkHttpClient().newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
@@ -140,17 +142,42 @@ class AccpRefCandidature : AppCompatActivity() {
 
             override fun onResponse(call: Call, response: Response) {
                 if (response.isSuccessful) {
-                    val fos = FileOutputStream(File(getExternalFilesDir(null), filename))
+                    val file = File(getExternalFilesDir(null), filename)
+                    val fos = FileOutputStream(file)
                     fos.write(response.body?.bytes())
                     fos.close()
+
+                    runOnUiThread {
+                        when (filename) {
+                            "cv.pdf" -> {
+                                button.text = "CV Téléchargé"
+                                openPdf(file)
+                            }
+                            "lm.pdf" -> {
+                                button.text = "LM Téléchargé"
+                                openPdf(file)
+                            }
+                        }
+                    }
                 } else {
                     // Handle the error
                 }
             }
-
         })
-
     }
+
+    fun openPdf(file: File) {
+        val uri = FileProvider.getUriForFile(this, "${applicationContext.packageName}.provider", file)
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = uri
+        intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+        } else {
+            Toast.makeText(this, "No PDF viewer installed", Toast.LENGTH_LONG).show()
+        }
+    }
+
 
 
 

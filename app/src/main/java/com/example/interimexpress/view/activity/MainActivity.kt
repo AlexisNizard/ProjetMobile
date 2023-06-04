@@ -19,6 +19,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.interimexpress.R
 import com.example.interimexpress.controller.*
+import com.example.interimexpress.model.Employeur
 import com.google.firebase.FirebaseApp
 import java.util.*
 
@@ -29,6 +30,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var employeurController: EmployeurController
     private lateinit var postulerController: PostulerController
     private lateinit var agenceController: AgenceController
+    private lateinit var gestionnaireController : GestionnaireController
+    private lateinit var adminController : AdminController
+
     private val LOCATION_PERMISSION_REQUEST_CODE = 1
     private var latitude: Double = 0.0
     private var longitude: Double = 0.0
@@ -42,12 +46,40 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             genDB()
         } else if (userRole == "Employeur") {
-            val intent = Intent(this, EmployeurDashboardActivity::class.java)
-            startActivity(intent)
-            genDB()
+
+            val employeurController = EmployeurController()
+            val mail = sharedPreferences.getString("userMail", "")
+            val empTask = employeurController.getEmployeur(mail.toString())
+
+            empTask.addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val employeur = document.toObject(Employeur::class.java)
+                    if (employeur?.valide == 0) {
+                        val intent = Intent(this, EmployeurDashboardLockedActivity::class.java)
+                        startActivity(intent)
+                        genDB()
+                    }
+                    else {
+                        val intent = Intent(this, EmployeurDashboardActivity::class.java)
+                        startActivity(intent)
+                        genDB()
+                    }
+                }
+            }
+
         }
         else if (userRole == "Agence") {
             val intent = Intent(this, AgenceDashboardActivity::class.java)
+            startActivity(intent)
+            genDB()
+        }
+        else if (userRole == "Gestionnaire") {
+            val intent = Intent(this, GestionnaireDashboardActivity::class.java)
+            startActivity(intent)
+            genDB()
+        }
+        else if (userRole == "Admin") {
+            val intent = Intent(this, AdminDashboardActivity::class.java)
             startActivity(intent)
             genDB()
         }
@@ -118,12 +150,16 @@ class MainActivity : AppCompatActivity() {
         employeurController = EmployeurController()
         postulerController = PostulerController()
         agenceController = AgenceController()
+        gestionnaireController = GestionnaireController()
+        adminController = AdminController()
 
         offreController.checkAndUpdateData()
         candidatController.checkAndUpdateData()
         employeurController.checkAndUpdateData()
         postulerController.checkAndUpdateData()
         agenceController.checkAndUpdateData()
+        gestionnaireController.checkAndUpdateData()
+        adminController.checkAndUpdateData()
     }
 
     private fun hasShownRationale(): Boolean {
@@ -168,6 +204,7 @@ class MainActivity : AppCompatActivity() {
             if (location != null) {
                 latitude = location.latitude
                 longitude = location.longitude
+
 
                 saveLocationInSharedPrefs(latitude, longitude)
                 println("Latitude: $latitude, Longitude: $longitude")

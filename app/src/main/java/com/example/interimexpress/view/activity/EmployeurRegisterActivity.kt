@@ -24,6 +24,9 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.hbb20.CountryCodePicker
 import java.util.*
+import javax.mail.*
+import javax.mail.internet.InternetAddress
+import javax.mail.internet.MimeMessage
 import kotlin.random.Random
 
 class EmployeurRegisterActivity : AppCompatActivity() {
@@ -84,7 +87,15 @@ class EmployeurRegisterActivity : AppCompatActivity() {
 
         val registerButton = findViewById<Button>(R.id.register_button)
         registerButton.setOnClickListener {
-            registerEmployeur()
+            val verificationCode = generateVerificationCode()
+            val employeur = registerEmployeur()
+            sendEmail( employeur?.adresseMail.toString(), "InterimExpress : Code de vérification", "Bonjour, \n\nVotre code de vérification est : $verificationCode")
+            //registerEmployeur()
+
+            val intent = Intent(this, ConfirmationInscriptionActivity::class.java)
+            intent.putExtra("Employeur", employeur)
+            intent.putExtra("VerificationCode", verificationCode)
+            startActivity(intent)
         }
 
         //TESTING
@@ -256,7 +267,55 @@ class EmployeurRegisterActivity : AppCompatActivity() {
 
     }
 
-    private fun registerEmployeur() {
+    private fun registerEmployeur(): Employeur {
+        val nomEntreprise = findViewById<EditText>(R.id.editTextNomEntreprise).text.toString()
+        val nomService = findViewById<EditText>(R.id.editTextNomService).text.toString()
+        val nomSousService = findViewById<EditText>(R.id.editTextNomSousService).text.toString()
+        val numeroSiret = findViewById<EditText>(R.id.editTextNumNational).text.toString()
+        val nomContact1 = findViewById<EditText>(R.id.editTextNom).text.toString()
+        val prenomContact1 = findViewById<EditText>(R.id.editTextPrenom).text.toString()
+        val nomContact2 = findViewById<EditText>(R.id.editTextNom2).text.toString()
+        val prenomContact2 = findViewById<EditText>(R.id.editTextPrenom2).text.toString()
+        val adresseMail = findViewById<EditText>(R.id.editTextMail1).text.toString()
+        val adresseMail2 = findViewById<EditText>(R.id.editTextMail2).text.toString()
+        val motDePasse = findViewById<EditText>(R.id.editTextPassword).text.toString()
+        val numTelephone1 = findViewById<EditText>(R.id.editTextPhoneNumber1).text.toString()
+        val numTelephone2 = findViewById<EditText>(R.id.editTextPhoneNumber2).text.toString()
+        val adresse = findViewById<EditText>(R.id.editTextAdresse).text.toString()
+        val codePostal = findViewById<EditText>(R.id.editTextCodePostal).text.toString()
+        val ville = findViewById<EditText>(R.id.editTextVille).text.toString()
+        val lienSiteWeb = findViewById<EditText>(R.id.editTextSiteWeb).text.toString()
+        val lienLinkedin = findViewById<EditText>(R.id.editTextLinkedIn).text.toString()
+        val lienFacebook = findViewById<EditText>(R.id.editTextFacebook).text.toString()
+
+        return Employeur(
+            adresseMail = adresseMail,
+            nomEntreprise = nomEntreprise,
+            nomService = nomService,
+            nomSousService = nomSousService,
+            numeroSiret = numeroSiret,
+            nomContact1 = nomContact1,
+            prenomContact1 = prenomContact1,
+            nomContact2 = nomContact2,
+            prenomContact2 = prenomContact2,
+            adresseMail2 = adresseMail2,
+            motDePasse = motDePasse,
+            role = "Employeur",
+            numTelephone1 = numTelephone1,
+            numTelephone2 = numTelephone2,
+            adresse = adresse,
+            codePostal = codePostal,
+            ville = ville,
+            lienSiteWeb = lienSiteWeb,
+            lienLinkedin = lienLinkedin,
+            lienFacebook = lienFacebook,
+            valide = 0,
+            repondu = 0
+        )
+    }
+
+
+    /*private fun registerEmployeur() {
         val nomEntreprise = findViewById<EditText>(R.id.editTextNomEntreprise).text.toString()
         val nomService = findViewById<EditText>(R.id.editTextNomService).text.toString()
         val nomSousService = findViewById<EditText>(R.id.editTextNomSousService).text.toString()
@@ -307,6 +366,42 @@ class EmployeurRegisterActivity : AppCompatActivity() {
 
         /*val intent = Intent(this, ConfirmationInscriptionActivity::class.java)
         startActivity(intent)*/
+    }*/
+
+    private fun generateVerificationCode(): String {
+        val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
+        return (1..5)
+            .map { allowedChars.random() }
+            .joinToString("")
+    }
+
+    private fun sendEmail(to: String, subject: String, message: String) {
+        Thread {
+            try {
+                val properties = Properties()
+                properties.put("mail.smtp.host", "smtp.gmail.com")
+                properties.put("mail.smtp.port", "465")
+                properties.put("mail.smtp.auth", "true")
+                properties.put("mail.smtp.socketFactory.port", "465")
+                properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory")
+
+                val session = Session.getInstance(properties, object : Authenticator() {
+                    override fun getPasswordAuthentication(): PasswordAuthentication {
+                        return PasswordAuthentication("interimexpressmail@gmail.com", "bidqiljxrnpcfyjt")
+                    }
+                })
+
+                val mimeMessage = MimeMessage(session)
+                mimeMessage.setFrom(InternetAddress("interimexpressmail@gmail.com"))
+                mimeMessage.addRecipient(Message.RecipientType.TO, InternetAddress(to))
+                mimeMessage.subject = subject
+                mimeMessage.setText(message)
+
+                Transport.send(mimeMessage)
+            } catch (e: MessagingException) {
+                e.printStackTrace()
+            }
+        }.start()
     }
 
 

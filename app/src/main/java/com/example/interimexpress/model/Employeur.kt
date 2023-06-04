@@ -1,5 +1,7 @@
 package com.example.interimexpress.model
 
+import java.io.Serializable
+
 data class Employeur(
     var adresseMail: String? = null,
     var nomEntreprise: String? = null,
@@ -20,5 +22,7 @@ data class Employeur(
     var ville: String? = null,
     var lienSiteWeb: String? = null,
     var lienLinkedin: String? = null,
-    var lienFacebook: String? = null
-)
+    var lienFacebook: String? = null,
+    var valide: Int = 0,
+    var repondu: Int=0
+)  : Serializable

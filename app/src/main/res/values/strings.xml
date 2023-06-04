@@ -71,8 +71,8 @@
 
 
     <!-- slide activity -->
-    <string name="titreSlidesActivity">Vous avez choisi de vous inscrire en temps qu\'employeur sur notre application!</string>
-    <string name="explicationSlideActivity">Après validation de votre compte, vous devrez choisir un abonnement. \nAprès cela voici les <b>services</b> dont vous pourrez bénéficier:</string>
+    <string name="titreSlidesActivity">Vous avez choisi de vous inscrire en temps qu\'Employeur !</string>
+    <string name="explicationSlideActivity">Voici les différents <b>services</b> dont vous pourrez bénéficier après votre connexion :</string>
 
     <!-- Autres chaînes de votre application -->
     <string-array name="abonnements_array">

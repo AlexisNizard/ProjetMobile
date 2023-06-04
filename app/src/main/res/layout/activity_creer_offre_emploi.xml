@@ -443,6 +443,35 @@
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
                 app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
 
+            <TextView
+                android:id="@+id/lienOffre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Lien vers mon offre *"
+                android:textColor="#DE264CCC"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
+
+            <EditText
+                android:id="@+id/editTextlienOffre"
+                android:layout_width="0dp"
+                android:layout_height="52sp"
+                android:background="@drawable/bg_carte_meme_fond"
+                android:hint="https://www.entreprise.com/offre"
+                android:padding="14sp"
+                android:singleLine="true"
+                android:textSize="15dp"
+                android:textColor="#000000"
+                android:textColorHint="#636363"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/lienOffre" />
+
+
+
             <Button
                 android:id="@+id/btn_creationOffre"
                 android:layout_width="0dp"
@@ -457,7 +486,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
-                app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextlienOffre" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

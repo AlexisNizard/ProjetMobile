@@ -20,6 +20,16 @@
         android:theme="@style/Theme.InterimExpress"
         tools:targetApi="31">
 
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+
         <activity android:name=".view.activity.PaiementAbonnementActivity"/>
         <activity android:name=".view.activity.ChoisirAbonnementActivity"/>
         <activity android:name=".view.activity.OffresFavoriActivity" />
@@ -47,11 +57,29 @@
             android:name=".view.activity.PostulerOffreActivity" />
         <activity
             android:name=".view.activity.AccpRefCandidature" />
+        <activity
+            android:name=".view.activity.MesNotifsActivity" />
+        <activity
+            android:name=".view.activity.AdminDashboardActivity" />
+        <activity
+            android:name=".view.activity.GestionnaireDashboardActivity" />
+        <activity
+            android:name=".view.activity.CreerGestionnaireActivity" />
+        <activity
+            android:name=".view.activity.GererGestionnairesActivity" />
+        <activity
+            android:name=".view.activity.EmployeurDashboardLockedActivity" />
+        <activity
+            android:name=".view.activity.GererEmployeursActivity" />
+        <activity
+            android:name=".view.activity.NotifsCreationCompteEmpActivity" />
+        <activity
+            android:name=".view.activity.AccpRefInscrEmpActivity" />
+
 
         <activity
             android:name=".view.activity.MesOffresActivity" />
         <activity android:name=".view.activity.AgenceDashboardActivity"/>
-        <activity android:name=".view.activity.CreerOffreEmploiAgenceActivity"/>
         <activity android:name=".view.activity.EditOffreActivity"/>
         <activity android:name=".view.activity.GererCandidatureActivity"/>
         <activity

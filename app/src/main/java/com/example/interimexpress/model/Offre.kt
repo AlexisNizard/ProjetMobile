@@ -15,7 +15,8 @@ data class Offre(
     var dateFin: Timestamp? = null,
     var description: String? = null,
     var dateCreation: Timestamp? = null,
-    var nbrClick: Int = 0
+    var nbrClick: Int = 0,
+    var lienOffre: String? = null
 )
 
 

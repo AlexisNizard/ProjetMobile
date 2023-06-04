@@ -106,6 +106,7 @@
                 android:textSize="16dp"/>
 
 
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_carte"
                 android:layout_width="0dp"
@@ -117,7 +118,6 @@
                 app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
                 app:layout_constraintTop_toBottomOf="@id/logo"
                 >
-
 
                 <ImageView
                     android:id="@+id/image3"
@@ -148,7 +148,6 @@
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
             <FrameLayout
                 android:id="@+id/layout_carte2"

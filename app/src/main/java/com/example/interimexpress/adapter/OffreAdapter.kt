@@ -101,7 +101,7 @@ open class OffreAdapter(var offreList: MutableList<Offre>) : RecyclerView.Adapte
         val daysSinceCreation = TimeUnit.MILLISECONDS.toDays(
             Timestamp.now().toDate().time - dateCreation.toDate().time)
 
-        holder.datePublic?.text = if (daysSinceCreation == 1L) {
+        holder.datePublic?.text = if (daysSinceCreation == 0L) {
             "Offre publiée depuis moins d'1 jour"
         } else {
             "Offre publiée il y a $daysSinceCreation jours"

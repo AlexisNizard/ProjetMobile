@@ -7,6 +7,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.SetOptions
 
 class EmployeurController {
 
@@ -48,4 +49,44 @@ class EmployeurController {
             .limit(1)
             .get()
     }
+
+    fun getAllEmployeurs(): Task<QuerySnapshot> {
+        return employeursCollection.get()
+    }
+
+    fun getEmployeursNonValides(): Task<QuerySnapshot> {
+        return employeursCollection.whereEqualTo("valide", 0).get()
+    }
+
+    fun getEmployeursNonRep(): Task<QuerySnapshot> {
+        return employeursCollection.whereEqualTo("repondu", 0).get()
+    }
+
+
+    fun deleteEmployeur(adresseMail: String): Task<Void> {
+        return employeursCollection.document(adresseMail).delete()
+    }
+
+    fun acceptEmployeur(emailEmployeur: String) {
+        val docRef = employeursCollection.document(emailEmployeur)
+        docRef.update("repondu", 1, "valide", 1)
+            .addOnSuccessListener {
+                Log.d("EmployeurController", "Employeur has been accepted successfully")
+            }
+            .addOnFailureListener { exception ->
+                Log.e("EmployeurController", "Error accepting employeur", exception)
+            }
+    }
+
+    fun refuseEmployeur(emailEmployeur: String) {
+        val docRef = employeursCollection.document(emailEmployeur)
+        docRef.update("repondu", 1)
+            .addOnSuccessListener {
+                Log.d("EmployeurController", "Employeur has been refused successfully")
+            }
+            .addOnFailureListener { exception ->
+                Log.e("EmployeurController", "Error refusing employeur", exception)
+            }
+    }
+
 }

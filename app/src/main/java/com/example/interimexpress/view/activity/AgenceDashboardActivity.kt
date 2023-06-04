@@ -15,16 +15,12 @@ class AgenceDashboardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_agence_dashboard)
 
         val logout = findViewById<ImageView>(R.id.logout)
-        val image1 = findViewById<ImageView>(R.id.image1)
 
         logout.setOnClickListener {
             logout()
         }
 
-        image1.setOnClickListener {
-            val intent = Intent(this, CreerOffreEmploiAgenceActivity::class.java)
-            startActivity(intent)
-        }
+
 
     }
 

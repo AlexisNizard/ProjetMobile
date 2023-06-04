@@ -6,11 +6,10 @@ import com.example.interimexpress.model.InitialData
 import com.example.interimexpress.model.Offre
 import com.google.android.gms.tasks.Task
 import com.google.firebase.Timestamp
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FieldValue
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.*
+import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.Comparator
 
 class OffreController {
 
@@ -39,6 +38,52 @@ class OffreController {
     fun getAllOffres(): Task<QuerySnapshot> {
         return offresCollection.get()
     }
+
+    fun getOffresByMetier(metier: String): Task<QuerySnapshot> {
+        return offresCollection.whereEqualTo("metier", metier).get()
+    }
+
+    fun getOffresByPeriode(periode: Timestamp): Task<QuerySnapshot> {
+        // Si "periode" est un Timestamp
+        return offresCollection.whereGreaterThanOrEqualTo("periode", periode).get()
+        // Ou si "periode" est un champ de date (yyyy-mm-dd), convertissez-le en format de date Firestore avant de faire la comparaison
+    }
+
+    fun getFilteredOffres(metier: String?, employeur: String?, periodeDebut: Long?, periodeFin: Long?, lieu: String?): Task<QuerySnapshot> {
+        var query: Query = offresCollection // Nous commençons par une requête qui récupère toutes les offres
+
+        // Nous ajoutons des filtres à la requête en fonction de la présence des critères
+        if (!metier.isNullOrEmpty()) {
+            query = query.whereEqualTo("titre", metier)
+        }
+
+        if (!employeur.isNullOrEmpty()) {
+            query = query.whereEqualTo("entreprise", employeur)
+        }
+
+        if (!lieu.isNullOrEmpty()) {
+            query = query.whereEqualTo("adresse", lieu)
+        }
+
+        /*if (periodeDebut != null && periodeFin != null) {
+            // La bibliothèque Firestore pour Android utilise des objets Timestamp pour les dates
+            // Nous devons convertir nos dates en Timestamp pour les utiliser dans les requêtes Firestore
+            val timestampDebut = Timestamp(Date(periodeDebut))
+            val timestampFin = Timestamp(Date(periodeFin))
+
+            query = query.whereGreaterThanOrEqualTo("dateDebut", timestampDebut)
+                .whereLessThanOrEqualTo("dateFin", timestampFin)
+        }
+
+        // Triez les résultats par date de création
+        query = query.orderBy("dateCreation")*/
+
+        return query.get()
+    }
+
+
+
+
 
     fun deleteOffre(id: String) {
         offresCollection.document(id).delete()

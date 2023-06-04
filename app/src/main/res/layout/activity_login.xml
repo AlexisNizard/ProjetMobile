@@ -23,7 +23,8 @@
                 android:layout_height="wrap_content"
                 android:text="CANDIDAT TEST"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginLeft="42dp"/>
 
             <Button
                 android:id="@+id/autoFillEmployeur"
@@ -36,9 +37,26 @@
                 android:id="@+id/autoFillAgence"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
                 android:text="AGENCE TEST"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/autoFillCandidat" />
+
+            <Button
+                android:id="@+id/autoFillGestionnaire"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GEST. TEST"
+                app:layout_constraintStart_toEndOf="@id/autoFillAgence"
+                app:layout_constraintTop_toTopOf="@id/autoFillAgence"/>
+
+            <Button
+                android:id="@+id/autoFillAdmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ADMIN TEST"
+                app:layout_constraintStart_toEndOf="@id/autoFillGestionnaire"
+                app:layout_constraintTop_toTopOf="@id/autoFillGestionnaire"/>
             <!--FIN DEBUGGING à supprimer à la fin du projet-->
 
 

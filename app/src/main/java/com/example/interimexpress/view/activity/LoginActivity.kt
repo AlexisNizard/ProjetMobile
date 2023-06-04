@@ -9,9 +9,8 @@ import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import com.example.interimexpress.R
-import com.example.interimexpress.controller.AgenceController
-import com.example.interimexpress.controller.CandidatController
-import com.example.interimexpress.controller.EmployeurController
+import com.example.interimexpress.controller.*
+import com.example.interimexpress.model.Employeur
 import com.google.android.material.textfield.TextInputEditText
 
 class LoginActivity : AppCompatActivity() {
@@ -22,6 +21,8 @@ class LoginActivity : AppCompatActivity() {
     private val candidatController = CandidatController()
     private val employeurController = EmployeurController()
     private val agenceController = AgenceController()
+    private val adminController = AdminController()
+    private val gestionnaireController= GestionnaireController()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +41,8 @@ class LoginActivity : AppCompatActivity() {
         val autoFillCandidat = findViewById<Button>(R.id.autoFillCandidat)
         val autoFillEmployeur = findViewById<Button>(R.id.autoFillEmployeur)
         val autoFillAgence = findViewById<Button>(R.id.autoFillAgence)
+        val autoFillAdmin = findViewById<Button>(R.id.autoFillAdmin)
+        val autoFillGestionnaire = findViewById<Button>(R.id.autoFillGestionnaire)
 
         autoFillCandidat.setOnClickListener {
             editTextMail.setText("john.doe@example.com")
@@ -50,10 +53,22 @@ class LoginActivity : AppCompatActivity() {
             editTextMail.setText("contact1@entrepriseA.com")
             editTextPassword.setText("password123")
         }
+
         autoFillAgence.setOnClickListener {
             editTextMail.setText("contact1@entrepriseB.com")
             editTextPassword.setText("password123")
         }
+
+        autoFillAdmin.setOnClickListener {
+            editTextMail.setText("admin@gmail.com")
+            editTextPassword.setText("admin")
+        }
+        autoFillGestionnaire.setOnClickListener {
+            editTextMail.setText("gestionnaire1@gmail.com")
+            editTextPassword.setText("mdp")
+        }
+
+
 //FIN TESTING
     }
 
@@ -71,14 +86,28 @@ class LoginActivity : AppCompatActivity() {
                         val role = result.documents[0]["role"] as String?
                         saveUserRole(mail, role)
                     } else {
-                        // Essayons maintenant avec Agence
                         agenceController.getAgenceByMailAndPassword(mail, password).addOnSuccessListener { result ->
                             if (!result.isEmpty) {
                                 val role = result.documents[0]["role"] as String?
                                 saveUserRole(mail, role)
                             } else {
-                                // Aucun utilisateur trouvé, afficher un message d'erreur
-                                Toast.makeText(this, "Aucun utilisateur trouvé", Toast.LENGTH_SHORT).show()
+                                // Ajout des cas pour Admin et Gestionnaire
+                                adminController.getAdminByMailAndPassword(mail, password).addOnSuccessListener { result ->
+                                    if (!result.isEmpty) {
+                                        val role = result.documents[0]["role"] as String?
+                                        saveUserRole(mail, role)
+                                    } else {
+                                        gestionnaireController.getGestionnaireByMailAndPassword(mail, password).addOnSuccessListener { result ->
+                                            if (!result.isEmpty) {
+                                                val role = result.documents[0]["role"] as String?
+                                                saveUserRole(mail, role)
+                                            } else {
+                                                // Aucun utilisateur trouvé, afficher un message d'erreur
+                                                Toast.makeText(this, "Aucun utilisateur trouvé", Toast.LENGTH_SHORT).show()
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -97,12 +126,37 @@ class LoginActivity : AppCompatActivity() {
 
         val intent = when(role) {
             "Candidat" -> Intent(this, RechercheOffresActivity::class.java)
-            "Employeur" -> Intent(this, EmployeurDashboardActivity::class.java)
             "Agence" -> Intent(this, AgenceDashboardActivity::class.java)
+            "Admin" -> Intent(this, AdminDashboardActivity::class.java)
+            "Gestionnaire" -> Intent(this, GestionnaireDashboardActivity::class.java)
             else -> Intent(this, MainActivity::class.java)
         }
-        startActivity(intent)
-        finish()
+
+        if(role=="Employeur"){
+            val employeurController = EmployeurController()
+            val empTask = employeurController.getEmployeur(mail)
+
+            empTask.addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val employeur = document.toObject(Employeur::class.java)
+                    if (employeur?.valide == 0) {
+                        val intent = Intent(this, EmployeurDashboardLockedActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                    else {
+                        val intent = Intent(this, EmployeurDashboardActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                }
+            }
+        }
+        else{
+            startActivity(intent)
+            finish()
+        }
     }
+
 
 }

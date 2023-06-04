@@ -86,9 +86,9 @@ class PostulerOffreActivity : AppCompatActivity() {
                 findViewById<EditText>(R.id.editTextPrenom).setText(candidat?.prenom)
                 val originalFormat = SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE)
                 val targetFormat = SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE)
-                val date = originalFormat.parse(candidat?.dateNaissance)
+                val dateStr = candidat?.dateNaissance ?: ""
+                val date = originalFormat.parse(dateStr)
                 findViewById<EditText>(R.id.editTextDate).setText(targetFormat.format(date))
-
 
                 val index = nationalities.indexOf(candidat?.nationalite)
                 if (index != -1) {
@@ -100,6 +100,7 @@ class PostulerOffreActivity : AppCompatActivity() {
             // Gérer l'erreur ici
             Log.e("PostulerOffreActivity", "Erreur lors de la récupération du candidat", exception)
         }
+
 
 
 

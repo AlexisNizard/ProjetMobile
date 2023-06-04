@@ -43,6 +43,7 @@ class CreerOffreEmploiActivity : AppCompatActivity() {
     private lateinit var finEditText: Button
     private lateinit var descriptionEditText: EditText
     private lateinit var creerOffreButton: Button
+    private lateinit var editTextlienOffre: EditText
 
 
     @SuppressLint("CutPasteId")
@@ -62,6 +63,7 @@ class CreerOffreEmploiActivity : AppCompatActivity() {
         remunerationEditText = findViewById(R.id.editTextRemuneration)
         debEditText = findViewById(R.id.deb)
         finEditText = findViewById(R.id.fin)
+        editTextlienOffre = findViewById(R.id.editTextlienOffre)
 
         creerOffreButton = findViewById(R.id.btn_creationOffre)
 
@@ -181,6 +183,9 @@ class CreerOffreEmploiActivity : AppCompatActivity() {
         val dateFinString = finEditText.text.toString()
         val dateFin = if (dateFinString.isNullOrBlank()) null else Timestamp(dateFormat.parse(dateFinString))
 
+        val editTextlienOffre = if (editTextlienOffre.text.toString()=="") null else editTextlienOffre.text.toString()
+
+
         val sharedPreferences = getSharedPreferences("InterimExpress", Context.MODE_PRIVATE)
         val mail = sharedPreferences.getString("userMail", "") // récupérer l'email de l'utilisateur
 
@@ -208,7 +213,8 @@ class CreerOffreEmploiActivity : AppCompatActivity() {
                     dateFin = dateFin,
                     description = description,
                     dateCreation = Timestamp(Date()),
-                    nbrClick = 0
+                    nbrClick = 0,
+                    lienOffre = editTextlienOffre
                 )
 
                 offreController.insertOffre(offre)

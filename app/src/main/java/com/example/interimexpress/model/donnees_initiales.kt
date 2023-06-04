@@ -7,7 +7,7 @@ import java.util.*
 
 object InitialData {
 
-    const val VERSION = 55
+    const val VERSION = 66
 
     private val sdf = SimpleDateFormat("dd/MM/yyyy")
     private val date = sdf.parse("01/02/2022")
@@ -35,7 +35,9 @@ object InitialData {
             ville = "Paris",
             lienSiteWeb = "www.entrepriseA.com",
             lienLinkedin = "www.linkedin.com/in/entrepriseA",
-            lienFacebook = "www.facebook.com/entrepriseA"
+            lienFacebook = "www.facebook.com/entrepriseA",
+            valide = 1,
+            repondu=1
         ),Employeur(
             adresseMail = "contact1@entrepriseB.com",
             nomEntreprise = "Entreprise B",
@@ -56,7 +58,9 @@ object InitialData {
             ville = "Lyon",
             lienSiteWeb = null,
             lienLinkedin = "www.linkedin.com/in/entrepriseB",
-            lienFacebook = null
+            lienFacebook = null,
+            valide = 1,
+            repondu=1
         ),Employeur(
             adresseMail = "contact1@entrepriseC.com",
             nomEntreprise = "Entreprise C",
@@ -77,7 +81,9 @@ object InitialData {
             ville = "Toulouse",
             lienSiteWeb = "www.entrepriseC.com",
             lienLinkedin = null,
-            lienFacebook = null
+            lienFacebook = null,
+            valide = 1,
+            repondu=1
         )
 
         ,Employeur(
@@ -100,7 +106,9 @@ object InitialData {
             ville = "Nantes",
             lienSiteWeb = "www.entrepriseD.com",
             lienLinkedin = null,
-            lienFacebook = null
+            lienFacebook = null,
+            valide = 1,
+            repondu=1
         )
 
         ,Employeur(
@@ -123,7 +131,9 @@ object InitialData {
             ville = "Lyon",
             lienSiteWeb = null,
             lienLinkedin = null,
-            lienFacebook = "www.facebook.com/entrepriseE"
+            lienFacebook = "www.facebook.com/entrepriseE",
+            valide = 1,
+            repondu=1
         )
 
         ,Employeur(
@@ -146,7 +156,9 @@ object InitialData {
             ville = "Rennes",
             lienSiteWeb = "www.entrepriseF.com",
             lienLinkedin = null,
-            lienFacebook = null
+            lienFacebook = null,
+            valide = 1,
+            repondu=1
         )
 
         ,Employeur(
@@ -169,7 +181,9 @@ object InitialData {
             ville = "Strasbourg",
             lienSiteWeb = null,
             lienLinkedin = "www.linkedin.com/in/entrepriseG",
-            lienFacebook = null
+            lienFacebook = null,
+            valide = 1,
+            repondu=1
         )
 
         ,Employeur(
@@ -192,7 +206,9 @@ object InitialData {
             ville = "Lille",
             lienSiteWeb = "www.entrepriseH.com",
             lienLinkedin = "www.linkedin.com/in/entrepriseH",
-            lienFacebook = "www.facebook.com/entrepriseH"
+            lienFacebook = "www.facebook.com/entrepriseH",
+            valide = 1,
+            repondu=1
         )
 
         ,Employeur(
@@ -215,7 +231,9 @@ object InitialData {
             ville = "Montpellier",
             lienSiteWeb = null,
             lienLinkedin = null,
-            lienFacebook = null
+            lienFacebook = null,
+            valide = 1,
+            repondu=1
         )
 
         ,Employeur(
@@ -238,7 +256,9 @@ object InitialData {
             ville = "Marseille",
             lienSiteWeb = null,
             lienLinkedin = "www.linkedin.com/in/entrepriseJ",
-            lienFacebook = null
+            lienFacebook = null,
+            valide = 1,
+            repondu=1
         )
 
         ,Employeur(
@@ -261,7 +281,9 @@ object InitialData {
             ville = "Paris",
             lienSiteWeb = "www.entrepriseK.com",
             lienLinkedin = "www.linkedin.com/in/entrepriseK",
-            lienFacebook = "www.facebook.com/entrepriseK"
+            lienFacebook = "www.facebook.com/entrepriseK",
+            valide = 1,
+            repondu=1
         )
 
         ,Employeur(
@@ -284,7 +306,9 @@ object InitialData {
             ville = "Lyon",
             lienSiteWeb = null,
             lienLinkedin = "www.linkedin.com/in/entrepriseL",
-            lienFacebook = null
+            lienFacebook = null,
+            valide = 1,
+            repondu=1
         )
         ,Employeur(
             adresseMail = "contact1@entrepriseH.com",
@@ -306,7 +330,9 @@ object InitialData {
             ville = "Toulouse",
             lienSiteWeb = null,
             lienLinkedin = "www.linkedin.com/in/entrepriseM",
-            lienFacebook = null
+            lienFacebook = null,
+            valide = 1,
+            repondu=1
         )
     )
 
@@ -421,10 +447,6 @@ object InitialData {
         )
     )
 
-
-    private val calendar = Calendar.getInstance().apply { add(Calendar.DAY_OF_YEAR, -1) }
-    private val timestamps = Timestamp(calendar.time.time / 1000, ((calendar.time.time % 1000) * 1000).toInt())
-
     val offres = listOf(
         Offre(
             id = "2",
@@ -471,7 +493,7 @@ object InitialData {
                     "Microsoft valorise la diversité et s'engage à créer un environnement inclusif pour tous les employés.\n" +
                     "\n" +
                     "Si tu es prêt(e) à relever de nouveaux défis et à contribuer à notre mission, n'hésite plus et postule dès maintenant !",
-            dateCreation =timestamps
+            dateCreation =Timestamp(Date())
         ),Offre(
             id = "3",
             titre = "Stage Marketing Digital - Lyon (F/H)",
@@ -828,7 +850,7 @@ object InitialData {
                     " - Une rémunération compétitive\n" +
                     "\n" +
                     "Postule dès maintenant pour rejoindre notre équipe et contribuer à notre succès !",
-            dateCreation = timestamps
+            dateCreation = Timestamp(Date())
         )
         ,Offre(
             id = "11",
@@ -865,7 +887,7 @@ object InitialData {
                     " - Une ambiance de travail dynamique et créative\n" +
                     "\n" +
                     "Postule dès maintenant pour rejoindre notre équipe et contribuer à l'industrie de la beauté !",
-            dateCreation = timestamps
+            dateCreation = Timestamp(Date())
         )
         ,Offre(
             id = "12",
@@ -902,7 +924,7 @@ object InitialData {
                     " - Une ambiance de travail stimulante et créative\n" +
                     "\n" +
                     "Postule dès maintenant pour rejoindre notre équipe et contribuer à façonner l'avenir des technologies mobiles !",
-            dateCreation =timestamps
+            dateCreation =Timestamp(Date())
         )
         ,Offre(
             id = "13",
@@ -939,7 +961,7 @@ object InitialData {
                     " - Une ambiance de travail stimulante et collaborative\n" +
                     "\n" +
                     "Postule dès maintenant pour rejoindre notre équipe et contribuer à notre succès dans l'industrie des produits de consommation !",
-            dateCreation = timestamps
+            dateCreation = Timestamp(Date())
         )
         ,Offre(
             id = "14",
@@ -976,7 +998,7 @@ object InitialData {
                     " - Une ambiance de travail dynamique et collaborative\n" +
                     "\n" +
                     "Postule dès maintenant pour rejoindre notre équipe et contribuer à notre mission de fournir des produits alimentaires de qualité !",
-            dateCreation =timestamps
+            dateCreation =Timestamp(Date())
         )
         ,Offre(
             id = "15",
@@ -991,7 +1013,7 @@ object InitialData {
             dateFin = null,
             description = "Microsoft, leader mondial de la technologie, recherche un(e) ingénieur(e) logiciel passionné(e) pour rejoindre notre équipe à Toulouse." +
                     " Expérience en développement C++ et connaissances en systèmes d'exploitation requises.",
-            dateCreation = timestamps
+            dateCreation = Timestamp(Date())
         )
         ,Offre(
             id = "16",
@@ -1006,7 +1028,7 @@ object InitialData {
             dateFin = null,
             description = "Coca-Cola recherche un(e) chef de projet marketing motivé(e) pour rejoindre notre équipe à Paris. " +
                     "Expérience en marketing et excellentes compétences en communication requises.",
-            dateCreation =timestamps
+            dateCreation =Timestamp(Date())
         )
         ,Offre(
             id = "17",
@@ -1056,7 +1078,7 @@ object InitialData {
                     " - Une rémunération compétitive\n" +
                     "\n" +
                     "Postule dès maintenant pour rejoindre notre équipe et contribuer à notre mission énergétique !",
-            dateCreation =timestamps
+            dateCreation =Timestamp(Date())
         )
         ,Offre(
             id = "19",
@@ -1091,7 +1113,7 @@ object InitialData {
                     " - Une ambiance de travail stimulante\n" +
                     "\n" +
                     "Postule dès maintenant pour rejoindre notre équipe et contribuer à notre mission de rendre les voyages accessibles à tous !",
-            dateCreation = timestamps
+            dateCreation = Timestamp(Date())
         )
         ,Offre(
             id = "20",
@@ -1126,9 +1148,31 @@ object InitialData {
                     " - Une rémunération compétitive\n" +
                     "\n" +
                     "Postule dès maintenant pour rejoindre notre équipe et contribuer à notre mission d'offrir une expérience d'achat exceptionnelle à nos clients !",
-            dateCreation =timestamps
+            dateCreation =Timestamp(Date())
         )
     )
+
+    val admins = listOf(
+        Admin(
+            adresseMail = "admin@gmail.com",
+            motDePasse = "admin",
+            role = "Admin"
+
+        )
+    )
+
+    val gestionnaires = listOf(
+        Gestionnaire(
+            adresseMail = "gestionnaire1@gmail.com",
+            motDePasse = "mdp",
+            role = "Gestionnaire"
+        ), Gestionnaire(
+            adresseMail = "gestionnaire2@gmail.com",
+            motDePasse = "mdp",
+            role = "Gestionnaire"
+        )
+    )
+
 
     /*val postulers = listOf(
         Postuler(

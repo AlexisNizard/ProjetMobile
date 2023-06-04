@@ -4,17 +4,17 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.example.interimexpress.R
 import com.example.interimexpress.controller.CandidatController
+import com.example.interimexpress.controller.EmployeurController
 import com.example.interimexpress.controller.PostulerController
 import com.example.interimexpress.model.Candidat
+import com.example.interimexpress.model.Employeur
+import com.example.interimexpress.view.fragment.FooterCandidatFragment
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -24,6 +24,38 @@ class CandidatDashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_candidat_dashboard)
+
+
+        val sharedPreferences = getSharedPreferences("InterimExpress", Context.MODE_PRIVATE)
+        val mail = sharedPreferences.getString("userMail", "")
+
+        val candidatController = CandidatController()
+
+        val candidatTask = candidatController.getCandidat(mail.toString())
+
+
+        candidatTask.addOnSuccessListener { document ->
+            if (document.exists()) {
+                val candidat = document.toObject(Candidat::class.java)
+
+                val nomComplet = "${candidat?.nom} ${candidat?.prenom}"
+                findViewById<TextView>(R.id.lenom).text = nomComplet
+                findViewById<TextView>(R.id.lemail).setText(candidat?.adresseMail)
+
+
+                val empTask2 = postulerController.getUntreatedPostulerByCandidatId(candidat?.adresseMail.toString())
+                empTask2.addOnSuccessListener { document ->
+                    val footerFragment = supportFragmentManager.findFragmentById(R.id.footerFragment) as? FooterCandidatFragment
+                    if (document.size()!=0) {
+                        footerFragment?.setNotificationIconActive(true)
+                    }
+                    else{
+                        footerFragment?.setNotificationIconActive(false)
+                    }
+                }
+            }
+        }
+
 
         val logout = findViewById<ImageView>(R.id.logout)
 
@@ -37,42 +69,16 @@ class CandidatDashboardActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val sharedPreferences = getSharedPreferences("InterimExpress", Context.MODE_PRIVATE)
-        val mail = sharedPreferences.getString("userMail", "") // récupérer l'email de l'utilisateur
+        val layout_carte2 = findViewById<FrameLayout>(R.id.layout_carte2)
+        layout_carte2.setOnClickListener{
+            val intent = Intent(this, MesNotifsActivity::class.java)
+            startActivity(intent)
+        }
 
-        // Obtenez une instance du CandidatController
-        val candidatController = CandidatController()
-
-        // Récupérez le document pour cet utilisateur
-        val candidatTask = candidatController.getCandidat(mail.toString())
-
-        candidatTask.addOnSuccessListener { document ->
-            if (document.exists()) {
-                val candidat = document.toObject(Candidat::class.java)
-
-                val nomComplet = "${candidat?.nom} ${candidat?.prenom}"
-                findViewById<TextView>(R.id.lenom).text = nomComplet
-                findViewById<TextView>(R.id.lemail).setText(candidat?.adresseMail)
-
-                // Récupérez les postulants non traités pour cet employeur
-                postulerController.getUntreatedPostulerByCandidatId(candidat?.adresseMail.toString())
-                    .addOnSuccessListener { postulerDocuments ->
-                        val numberOfUntreatedPostuler = postulerDocuments.size()
-                        if(numberOfUntreatedPostuler > 0){
-                            // Mettre à jour la valeur dans les préférences partagées
-                            val sharedPreferences = getSharedPreferences("InterimExpress", Context.MODE_PRIVATE)
-                            sharedPreferences.edit().putBoolean("hasUntreatedPostuler", true).apply()
-                        }
-                        else{
-                            val sharedPreferences = getSharedPreferences("InterimExpress", Context.MODE_PRIVATE)
-                            sharedPreferences.edit().putBoolean("hasUntreatedPostuler", false).apply()
-                        }
-                    }
-                    .addOnFailureListener { exception ->
-                        Log.e("EmployeurDashboardActivity", "Error getting untreated postuler", exception)
-                    }
-
-            }
+        val layout_carte3 = findViewById<FrameLayout>(R.id.layout_carte3)
+        layout_carte3.setOnClickListener{
+            val intent = Intent(this, OffresFavoriActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -89,23 +95,5 @@ class CandidatDashboardActivity : AppCompatActivity() {
         finish()
     }
 
-    object Utility {
-        fun updateNotificationIcon(context: Context, fragment: Fragment) {
-            val sharedPreferences = context.getSharedPreferences("InterimExpress", Context.MODE_PRIVATE)
-            val hasUntreatedPostuler = sharedPreferences.getBoolean("hasUntreatedPostuler", false)
-            if(hasUntreatedPostuler) {
-                val notificationIcon = fragment.view?.findViewById<ImageView>(R.id.notification_icon)
-                notificationIcon?.setImageResource(R.drawable.baseline_notifications_active_24)
-            }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val fragment = supportFragmentManager.findFragmentById(R.id.footerFragment)
-        if (fragment != null && fragment.isAdded()) {
-            Utility.updateNotificationIcon(this, fragment)
-        }
-    }
 
 }

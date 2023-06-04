@@ -78,6 +78,35 @@
                 app:srcCompat="@drawable/profil" />
 
 
+
+            <ImageView
+                android:id="@+id/settings_icon"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="75dp"
+                app:layout_constraintEnd_toEndOf="@+id/logo"
+                app:layout_constraintStart_toStartOf="@+id/logo"
+                app:layout_constraintTop_toTopOf="@+id/logo"
+                app:srcCompat="@drawable/settings_circle" />
+
+
+
+
+            <TextView
+                android:id="@+id/lemail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="115dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="16dp"/>
+
+
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_carte"
                 android:layout_width="0dp"
@@ -90,87 +119,35 @@
                 app:layout_constraintTop_toBottomOf="@id/logo"
                 >
 
-
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline_edittext_height"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_begin="0dp" />
-
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline_edittext_height_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="1" />
-
-
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline_img1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.25" />
-
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline_img2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.50" />
-
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline_img3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.75" />
-
-                <ImageView
-                    android:id="@+id/image1"
-                    android:layout_width="46dp"
-                    android:layout_height="46dp"
-                    android:src="@drawable/top_btn_1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline_img1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/guideline_edittext_height" />
-
-                <ImageView
-                    android:id="@+id/image2"
-                    android:layout_width="46dp"
-                    android:layout_height="46dp"
-                    android:src="@drawable/top_btn_2"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline_img2"
-                    app:layout_constraintStart_toStartOf="@+id/guideline_img1"
-                    app:layout_constraintTop_toTopOf="@+id/guideline_edittext_height" />
-
                 <ImageView
                     android:id="@+id/image3"
-                    android:layout_width="46dp"
-                    android:layout_height="46dp"
-                    android:src="@drawable/top_btn_3"
+                    android:layout_width="79dp"
+                    android:layout_height="79dp"
+                    android:src="@drawable/baseline_add_circle_24"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline_img3"
-                    app:layout_constraintStart_toStartOf="@+id/guideline_img2"
-                    app:layout_constraintTop_toTopOf="@+id/guideline_edittext_height" />
+                    android:layout_marginLeft="15dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/image4"
-                    android:layout_width="46dp"
-                    android:layout_height="46dp"
-                    android:src="@drawable/top_btn_4"
-                    app:layout_constraintBottom_toBottomOf="parent"
+
+                <TextView
+                    android:id="@+id/creer_new"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Créer une offre\n d'emploi"
+                    android:textAlignment="center"
+                    app:layout_constraintStart_toEndOf="@+id/image3"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/guideline_img3"
-                    app:layout_constraintTop_toTopOf="@+id/guideline_edittext_height" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginRight="10dp"
+                    android:textSize="21sp"
+                    android:textColor="#1650C6"
+                    android:textStyle="bold"/>
 
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
             <FrameLayout
                 android:id="@+id/layout_carte2"
@@ -193,15 +170,14 @@
                     android:layout_gravity="start"
                     android:layout_marginLeft="10dp"
                     android:elevation="3pt"
-                    android:padding="3dp"
-                    android:src="@drawable/ic_1" />
+                    android:src="@drawable/email_ic" />
 
 
                 <TextView
-                    android:id="@+id/text1"
+                    android:id="@+id/consul_offres"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Notifications agence"
+                    android:text="Consulter mes offres"
                     android:textAlignment="center"
                     android:textSize="18sp"
                     android:layout_marginTop="22dp"
@@ -233,15 +209,14 @@
                     android:layout_gravity="start"
                     android:layout_marginLeft="10dp"
                     android:elevation="3pt"
-                    android:padding="3dp"
-                    android:src="@drawable/ic_2" />
+                    android:src="@drawable/cv_ic" />
 
 
                 <TextView
-                    android:id="@+id/text2"
+                    android:id="@+id/ger_candid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mes candidatures"
+                    android:text="Gérer les candidatures"
                     android:textAlignment="center"
                     android:textSize="18sp"
                     android:layout_marginTop="22dp"
@@ -272,55 +247,14 @@
                     android:layout_gravity="start"
                     android:layout_marginLeft="10dp"
                     android:elevation="3pt"
-                    android:padding="3dp"
-                    android:src="@drawable/ic_3" />
+                    android:src="@drawable/resume_ic" />
 
 
                 <TextView
-                    android:id="@+id/text3"
+                    android:id="@+id/candid_accpt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mes emplois"
-                    android:textAlignment="center"
-                    android:textSize="18sp"
-                    android:layout_marginTop="22dp"
-                    android:layout_marginLeft="68dp"
-                    android:textColor="#0A3A9A"
-                    android:textStyle="bold"/>
-
-
-            </FrameLayout>
-
-
-            <FrameLayout
-                android:id="@+id/layout_carte5"
-                android:layout_width="0dp"
-                android:layout_height="65dp"
-                android:background="@drawable/bg_icon"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:elevation="2pt"
-                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start"
-                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
-                app:layout_constraintTop_toBottomOf="@id/layout_carte4">
-
-                <ImageView
-                    android:id="@+id/image8"
-                    android:layout_width="48dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="start"
-                    android:layout_marginLeft="10dp"
-                    android:elevation="3pt"
-                    android:padding="3dp"
-                    android:src="@drawable/ic_4" />
-
-
-                <TextView
-                    android:id="@+id/text4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="--------"
+                    android:text="Candidatures acceptées"
                     android:textAlignment="center"
                     android:textSize="18sp"
                     android:layout_marginTop="22dp"
@@ -336,7 +270,7 @@
                 android:layout_width="1dp"
                 android:layout_height="5dp"
                 app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
-                app:layout_constraintTop_toBottomOf="@id/layout_carte5"
+                app:layout_constraintTop_toBottomOf="@id/layout_carte4"
                 />
 
 

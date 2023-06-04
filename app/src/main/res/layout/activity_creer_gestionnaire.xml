@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FDFAFF"
+    tools:context=".view.activity.MainActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:id="@id/scrollView"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="-16dp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/parent_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="28dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.92" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_start_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.035"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_end_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.74"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.78"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_avatar_fin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.98"/>
+
+            <ImageView
+                android:id="@+id/banner"
+                android:layout_width="0dp"
+                android:layout_height="170dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/background_top"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                app:srcCompat="@drawable/logo_interimexpress"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start_logo"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingTop="25dp"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_logo"/>
+
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_avatar"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="35dp"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_avatar_fin"
+                android:src="@drawable/back_profile" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="3dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintBottom_toBottomOf="@+id/logo"
+                app:layout_constraintStart_toStartOf="@+id/logo"
+                app:layout_constraintTop_toTopOf="@+id/logo"
+                app:layout_constraintEnd_toEndOf="@+id/logo"
+                app:srcCompat="@drawable/profil" />
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Créer un gestionnaire"
+                android:textAlignment="center"
+                android:textColor="#DE315AE6"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/banner" />
+
+            <TextView
+                android:id="@+id/textViewTitreOffre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Adresse mail"
+                android:textColor="#DE264CCC"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editTextMail1_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-11dp"
+                android:textColorHint="#636363"
+                app:layout_constraintTop_toBottomOf="@+id/textViewTitreOffre"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:boxStrokeColor="#636363"
+                app:startIconDrawable="@drawable/baseline_email_24"
+                app:startIconTint="#636363">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextMail1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Mail du gestionnaire"
+                    android:background="@drawable/background_edt"
+                    android:textColor="#000000"
+                    android:padding="14dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textViewMdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_Mdp"
+                android:textColor="#DE264CCC"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/editTextMail1_layout"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                android:layout_marginTop="24dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password_input_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColorHint="#636363"
+                android:layout_marginTop="-11dp"
+                app:endIconMode="password_toggle"
+                app:endIconTint="#636363"
+                app:layout_constraintTop_toBottomOf="@+id/textViewMdp"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+
+                app:boxStrokeColor="#636363"
+                app:startIconDrawable="@drawable/baseline_lock_24"
+                app:startIconTint="#636363">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Mot de passe du gestionnaire"
+                    android:background="@drawable/background_edt"
+                    android:inputType="textPassword"
+                    android:textColor="#000000"
+                    android:padding="14dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textConfimerViewMdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confirmation du mot de passe"
+                android:textColor="#DE264CCC"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/password_input_layout"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                android:layout_marginTop="24dp" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password_input_layout_confirmation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColorHint="#636363"
+                android:layout_marginTop="-11dp"
+                app:endIconMode="password_toggle"
+                app:endIconTint="#636363"
+                app:layout_constraintTop_toBottomOf="@+id/textConfimerViewMdp"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+
+                app:boxStrokeColor="#636363"
+                app:startIconDrawable="@drawable/confirm_password_icon"
+                app:startIconTint="#636363">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextPassword_confirmation"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Confirmation du mot de passe du gestionnaire"
+                    android:background="@drawable/background_edt"
+                    android:inputType="textPassword"
+                    android:textColor="#000000"
+                    android:padding="14dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            <Button
+                android:id="@+id/btn_creationGest"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/rechercher_button"
+                android:text="Créer mon gestionnaire"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/password_input_layout_confirmation" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+

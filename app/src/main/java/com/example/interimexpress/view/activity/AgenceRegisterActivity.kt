@@ -294,7 +294,7 @@ class AgenceRegisterActivity : AppCompatActivity() {
 
         agenceController.insertAgence(agence)
 
-        val intent = Intent(this, ConfirmationInscriptionActivity::class.java)
+        val intent = Intent(this, AgenceDashboardActivity::class.java)
         startActivity(intent)
     }
 }

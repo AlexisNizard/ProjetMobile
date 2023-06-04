@@ -16,6 +16,7 @@ import com.example.interimexpress.controller.EmployeurController
 import com.example.interimexpress.controller.PostulerController
 import com.example.interimexpress.model.Candidat
 import com.example.interimexpress.model.Employeur
+import com.example.interimexpress.view.fragment.FooterCandidatFragment
 
 class EmployeurDashboardActivity  : AppCompatActivity() {
     private val postulerController = PostulerController()
@@ -25,17 +26,10 @@ class EmployeurDashboardActivity  : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_employeur_dashboard)
 
-        val logout = findViewById<ImageView>(R.id.logout)
-
-        logout.setOnClickListener {
-            logout()
-        }
-
         val sharedPreferences = getSharedPreferences("InterimExpress", Context.MODE_PRIVATE)
         val mail = sharedPreferences.getString("userMail", "")
 
         val employeurController = EmployeurController()
-
 
         val empTask = employeurController.getEmployeur(mail.toString())
 
@@ -44,24 +38,26 @@ class EmployeurDashboardActivity  : AppCompatActivity() {
                 val employeur = document.toObject(Employeur::class.java)
                 findViewById<TextView>(R.id.lemail).setText(employeur?.adresseMail)
 
-                postulerController.getUntreatedPostulerByEmployerId(employeur?.adresseMail.toString())
-                    .addOnSuccessListener { postulerDocuments ->
-                        val numberOfUntreatedPostuler = postulerDocuments.size()
-                        println("la val : $numberOfUntreatedPostuler")
-                        println("l'id : ${mail.toString()}")
-                        if(numberOfUntreatedPostuler > 0){
-                            val sharedPreferences = getSharedPreferences("InterimExpress", Context.MODE_PRIVATE)
-                            sharedPreferences.edit().putBoolean("hasUntreatedPostuler", true).apply()
-                        }
-                        else{
-                            val sharedPreferences = getSharedPreferences("InterimExpress", Context.MODE_PRIVATE)
-                            sharedPreferences.edit().putBoolean("hasUntreatedPostuler", false).apply()
-                        }
+                val empTask2 = postulerController.getUntreatedPostulerByEmployerId(employeur?.adresseMail.toString())
+                empTask2.addOnSuccessListener { document ->
+                    val footerFragment = supportFragmentManager.findFragmentById(R.id.footerFragment) as? FooterCandidatFragment
+                    if (document.size()!=0) {
+                        footerFragment?.setNotificationIconActive(true)
                     }
-                    .addOnFailureListener { exception ->
-                        Log.e("EmployeurDashboardActivity", "Error getting untreated postuler", exception)
+                    else{
+                        footerFragment?.setNotificationIconActive(false)
                     }
+                }
             }
+        }
+
+
+
+
+        val logout = findViewById<ImageView>(R.id.logout)
+
+        logout.setOnClickListener {
+            logout()
         }
 
 
@@ -98,24 +94,6 @@ class EmployeurDashboardActivity  : AppCompatActivity() {
         finish()
     }
 
-    object Utility {
-        fun updateNotificationIcon(context: Context, fragment: Fragment) {
-            val sharedPreferences = context.getSharedPreferences("InterimExpress", Context.MODE_PRIVATE)
-            val hasUntreatedPostuler = sharedPreferences.getBoolean("hasUntreatedPostuler", false)
-            if(hasUntreatedPostuler) {
-                val notificationIcon = fragment.view?.findViewById<ImageView>(R.id.notification_icon)
-                notificationIcon?.setImageResource(R.drawable.baseline_notifications_active_24)
-            }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val fragment = supportFragmentManager.findFragmentById(R.id.footerFragment)
-        if (fragment != null && fragment.isAdded()) {
-            Utility.updateNotificationIcon(this, fragment)
-        }
-    }
 
 
 }

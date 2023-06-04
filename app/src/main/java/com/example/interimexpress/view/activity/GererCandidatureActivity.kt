@@ -11,10 +11,13 @@ import com.example.interimexpress.R
 import com.example.interimexpress.adapter.CandidaturesRecuesAdapter
 import com.example.interimexpress.adapter.MesOffresAdapter
 import com.example.interimexpress.adapter.OffreAdapter
+import com.example.interimexpress.controller.EmployeurController
 import com.example.interimexpress.controller.OffreController
 import com.example.interimexpress.controller.PostulerController
+import com.example.interimexpress.model.Employeur
 import com.example.interimexpress.model.Offre
 import com.example.interimexpress.model.Postuler
+import com.example.interimexpress.view.fragment.FooterCandidatFragment
 
 class GererCandidatureActivity : AppCompatActivity() {
 
@@ -28,7 +31,28 @@ class GererCandidatureActivity : AppCompatActivity() {
         setContentView(R.layout.activity_gerer_candidature)
 
         val sharedPreferences = getSharedPreferences("InterimExpress", Context.MODE_PRIVATE)
-        val mail = sharedPreferences.getString("userMail", "") // récupérer l'email de l'utilisateur
+        val mail = sharedPreferences.getString("userMail", "")
+
+        val employeurController = EmployeurController()
+
+        val empTask = employeurController.getEmployeur(mail.toString())
+
+        empTask.addOnSuccessListener { document ->
+            if (document.exists()) {
+                val employeur = document.toObject(Employeur::class.java)
+
+                val empTask2 = postulerController.getUntreatedPostulerByEmployerId(employeur?.adresseMail.toString())
+                empTask2.addOnSuccessListener { document ->
+                    val footerFragment = supportFragmentManager.findFragmentById(R.id.footerFragment) as? FooterCandidatFragment
+                    if (document.size()!=0) {
+                        footerFragment?.setNotificationIconActive(true)
+                    }
+                    else{
+                        footerFragment?.setNotificationIconActive(false)
+                    }
+                }
+            }
+        }
 
         val imgProfil = findViewById<ImageView>(R.id.logo);
         imgProfil.setOnClickListener {
@@ -86,14 +110,6 @@ class GererCandidatureActivity : AppCompatActivity() {
                 newOffreList.add(it)
                 offreAdapter.updateOffreList(newOffreList)
             }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val fragment = supportFragmentManager.findFragmentById(R.id.footerFragment)
-        if (fragment != null && fragment.isAdded()) {
-            EmployeurDashboardActivity.Utility.updateNotificationIcon(this, fragment)
         }
     }
 

@@ -54,6 +54,7 @@ class PostulerController {
         }*/
     }
 
+
     fun uploadFile(uri: Uri, path: String): Task<Uri> {
         val fileReference = storage.reference.child(path)
         return fileReference.putFile(uri)

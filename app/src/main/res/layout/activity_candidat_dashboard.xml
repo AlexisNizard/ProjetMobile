@@ -46,6 +46,21 @@
                 app:layout_constraintGuide_percent="0.92" />
 
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_start2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.13" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_end2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.87" />
+
+
             <ImageView
                 android:id="@+id/logout"
                 android:layout_width="36dp"
@@ -161,11 +176,88 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <FrameLayout
+                android:id="@+id/layout_carte2"
+                android:layout_width="0dp"
+                android:layout_height="65dp"
+                android:background="@drawable/bg_icon"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:elevation="2pt"
+                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start2"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end2"
+                app:layout_constraintTop_toBottomOf="@id/layout_carte">
+
+
+                <ImageView
+                    android:id="@+id/image5"
+                    android:layout_width="48dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:layout_marginLeft="10dp"
+                    android:elevation="3pt"
+                    android:src="@drawable/baseline_notifications_512" />
+
+
+                <TextView
+                    android:id="@+id/consul_offres"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mes notifications"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginLeft="68dp"
+                    android:textColor="#0A3A9A"
+                    android:textStyle="bold"/>
+
+
+
+            </FrameLayout>
+            <FrameLayout
+                android:id="@+id/layout_carte3"
+                android:layout_width="0dp"
+                android:layout_height="65dp"
+                android:background="@drawable/bg_icon"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:elevation="2pt"
+                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start2"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end2"
+                app:layout_constraintTop_toBottomOf="@id/layout_carte2">
+
+                <ImageView
+                    android:id="@+id/image6"
+                    android:layout_width="48dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:layout_marginLeft="10dp"
+                    android:elevation="3pt"
+                    android:src="@drawable/baseline_favorite_24" />
+
+
+                <TextView
+                    android:id="@+id/ger_candid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mes favoris"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:layout_marginTop="21dp"
+                    android:layout_marginLeft="68dp"
+                    android:textColor="#0A3A9A"
+                    android:textStyle="bold"/>
+
+
+            </FrameLayout>
+
             <TextView
                 android:layout_width="1dp"
                 android:layout_height="15dp"
                 app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
-                app:layout_constraintTop_toBottomOf="@id/layout_carte"
+                app:layout_constraintTop_toBottomOf="@id/layout_carte3"
                 />
 
 
